@@ -3,8 +3,10 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 // import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Login {
+public class Login implements ActionListener {
     JFrame frameLogin = new JFrame();
     JTextField usuario = new JTextField();
     JPasswordField senha = new JPasswordField();
@@ -26,14 +28,14 @@ public class Login {
         frameLogin.getContentPane().setBackground(new Color(255, 222, 173));
 
         // configuração textField usuario
-        usuario.setBounds(210, 230, 115, 25);        
-        
+        usuario.setBounds(210, 230, 115, 25);
+
         // onfiguração PasswordField senha
         senha.setBounds(210, 275, 115, 25);
 
         // configuração do botão enviar
         submit.setBounds(175, 350, 150, 50);
-        submit.addActionListener(e -> System.out.println(usuario.getText()));
+        submit.addActionListener(this);
 
         // configurações label Principal
         label.setText("Mega Fibra OS");
@@ -66,7 +68,20 @@ public class Login {
 
     }
 
-    public String senha() {
+    public String getSenha() {
+        return senha.getText();
+    }
+
+    public String getUsuario() {
         return usuario.getText();
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == submit) {
+            getUsuario();
+            getSenha();
+        }
+    }
+
 }
