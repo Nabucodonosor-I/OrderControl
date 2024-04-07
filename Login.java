@@ -79,8 +79,8 @@ public class Login implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
-            getUsuario();
-            getSenha();
+            System.out.println(getUsuario());
+            System.out.println(getSenha());
         }
     }
 
