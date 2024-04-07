@@ -18,7 +18,7 @@ public class Login {
     Login() {
         // configuração do frame
         frameLogin.setSize(500, 500);
-        frameLogin.setTitle("Mega Fibra OS");
+        frameLogin.setTitle("Mega Fibra OS   Login");
         frameLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameLogin.setResizable(false);
         frameLogin.setVisible(true);

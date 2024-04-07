@@ -42,7 +42,8 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         cadastroButton.setForeground(new Color(255, 255, 255));
         cadastroButton.setBackground(new Color(54, 54, 54));
         cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        cadastroButton.addActionListener(e -> System.out.println("foi2"));
+        cadastroButton.addActionListener(this);
+        // cadastroButton.addActionListener(e -> System.out.println("foi2"));
 
         // configurações label
         principalLabel.setText("Mega Fibra OS");
@@ -65,11 +66,17 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     }
 
     // acionamento do botão login
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton) {
+        Object o = e.getSource();
+
+        if (o == loginButton) {
             framePrincipal.dispose();
             Login login = new Login();
+        } else if (o == cadastroButton) {
+            framePrincipal.dispose();
+            Cadastro cadastro = new Cadastro();
         }
     }
 }
