@@ -9,5 +9,6 @@ public class Cadastro {
         cadastro.setResizable(false);
         cadastro.setVisible(true);
         cadastro.setLayout(null);
+        cadastro.setLocationRelativeTo(null);
     }
 }

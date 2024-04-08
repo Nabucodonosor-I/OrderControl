@@ -3,7 +3,8 @@ public class Main {
 
         // Invoando construtores
         TelaCadastroLogin sp = new TelaCadastroLogin();
-        
-                       
+        Login login = new Login();
+
+        login.disposeLogin();                    
     }
 }

@@ -17,7 +17,7 @@ public class Login implements ActionListener {
     ImageIcon imageIcon2 = new ImageIcon("provedor-de-internet-2-43-1693542501.png");
     // Border border = BorderFactory.createLineBorder(Color.RED,1);
 
-    Login() {
+    public Login() {
         // configuração do frame
         frameLogin.setSize(500, 500);
         frameLogin.setTitle("Mega Fibra OS   Login");
@@ -25,6 +25,7 @@ public class Login implements ActionListener {
         frameLogin.setResizable(false);
         frameLogin.setVisible(true);
         frameLogin.setLayout(null);
+        frameLogin.setLocationRelativeTo(null);
         frameLogin.getContentPane().setBackground(new Color(255, 222, 173));
 
         // configuração textField usuario
@@ -66,6 +67,10 @@ public class Login implements ActionListener {
         frameLogin.add(usuarioLabel);
         frameLogin.add(submit);
 
+    }
+
+    public void disposeLogin() {
+        frameLogin.dispose();
     }
 
     public String getSenha() {

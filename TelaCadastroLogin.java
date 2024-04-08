@@ -14,7 +14,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     ImageIcon imageIcon2 = new ImageIcon("provedor-de-internet-2-43-1693542501.png");
     // Border border = BorderFactory.createLineBorder(Color.RED,1);
 
-    TelaCadastroLogin() {
+    public TelaCadastroLogin() {
 
         // configurações frame
         framePrincipal.setSize(500, 500);
@@ -22,6 +22,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrincipal.setResizable(false);
         framePrincipal.setVisible(true);
+        framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 222, 173));
         framePrincipal.setIconImage(imageIcon1.getImage());
 
