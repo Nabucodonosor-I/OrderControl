@@ -8,7 +8,8 @@ import java.awt.event.ActionListener;
 public class TelaCadastroLogin extends JFrame implements ActionListener {
     JFrame framePrincipal = new JFrame();
     JButton loginButton = new JButton("Login");
-    JButton cadastroButton = new JButton("Cadastrar");
+    JButton cadastroButton = new JButton("Cadastrar");  
+    JButton exitButton = new JButton("x");
     JLabel principalLabel = new JLabel();
     ImageIcon imageIcon1 = new ImageIcon("68386.png");
     ImageIcon imageIcon2 = new ImageIcon("provedor-de-internet-2-43-1693542501.png");
@@ -21,6 +22,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setTitle("Mega Fibra OS");
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrincipal.setResizable(false);
+        framePrincipal.setUndecorated(true);
         framePrincipal.setVisible(true);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 222, 173));
@@ -46,6 +48,14 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         cadastroButton.addActionListener(this);
         // cadastroButton.addActionListener(e -> System.out.println("foi2"));
 
+        // onfiguração botão de saida
+        exitButton.setBounds(455, 0, 45, 45);
+        exitButton.setBackground(new Color(0,0,0));
+        exitButton.setFont(new Font("Arial", Font.BOLD, 12));
+        exitButton.setForeground(new Color(255, 255, 255));
+        exitButton.addActionListener(this);
+
+
         // configurações label
         principalLabel.setText("Mega Fibra OS");
         principalLabel.setBounds(150, 25, 200, 200);
@@ -63,6 +73,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.add(principalLabel);
         framePrincipal.add(loginButton);
         framePrincipal.add(cadastroButton);
+        framePrincipal.add(exitButton);
         framePrincipal.setLayout(null);
     }
 
@@ -78,6 +89,9 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         } else if (o == cadastroButton) {
             framePrincipal.dispose();
             Cadastro cadastro = new Cadastro();
+        } else if (o == exitButton) {
+            framePrincipal.dispose();
         }
     }
 }
+    
