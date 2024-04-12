@@ -1,81 +1,168 @@
 import javax.swing.*;
-
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Cadastro implements ActionListener {
-    JFrame cadastro = new JFrame();
+public class Cadastro extends JFrame implements ActionListener {
+    JFrame framePrincipal = new JFrame();
+    RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54));
+    RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54));
+    JButton exitButton = new JButton("x");
+    JLabel principalLabel = new JLabel();
+    RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
+    ImageIcon imageIcon1 = new ImageIcon("Imagens\\68386.png");
+    ImageIcon imageIcon2 = new ImageIcon(
+            new ImageIcon("Imagens\\Logo.png").getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+    // Border border = BorderFactory.createLineBorder(Color.RED,1);
+
+    JTextField usuario = new JTextField();
     JTextField nome = new JTextField();
-    JTextField idade = new JTextField();
     JTextField email = new JTextField();
     JTextField cpf = new JTextField();
-    JLabel nomeLabel = new JLabel();
-    JLabel idadeLabel = new JLabel();
-    JLabel emailLabel = new JLabel();
-    JLabel cpfLabel = new JLabel();
-    JButton enviar = new JButton();
+    JPasswordField senha = new JPasswordField();
+    JButton submit = new JButton("Enviar ");
+    JLabel label = new JLabel();
+    JLabel senhaLabel = new JLabel();
+    JLabel usuarioLabel = new JLabel();
+    JLabel bemVindo = new JLabel();
+    JLabel credenciais = new JLabel();
+    JLabel orderConttrl = new JLabel();
 
-    Cadastro() {
-        cadastro.setSize(500, 500);
-        cadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        cadastro.setResizable(false);
-        cadastro.setVisible(true);
-        cadastro.setLayout(null);
-        cadastro.setLocationRelativeTo(null);
-        cadastro.getContentPane().setBackground(new Color(255, 222, 173));
+    public Cadastro() {
 
-        nome.setBounds(195, 200, 115, 25);
-        idade.setBounds(195, 230, 115, 25);
-        email.setBounds(195, 260, 115, 25);
-        cpf.setBounds(195, 290, 115, 25);
+        // configurações frame
+        framePrincipal.setSize(750, 500);
+        framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        framePrincipal.setResizable(false);
+        framePrincipal.setUndecorated(true);
+        framePrincipal.setVisible(true);
+        framePrincipal.setLocationRelativeTo(null);
+        framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
+        framePrincipal.setIconImage(imageIcon1.getImage());
+        
+        // config painel
+        painel.setBounds(15, 15, 350, 470);  
 
-        nomeLabel.setBounds(150, 200, 115, 25);
-        nomeLabel.setText("Nome: ");
-        idadeLabel.setBounds(150, 230, 115, 25);
-        idadeLabel.setText("Idade: ");
-        emailLabel.setBounds(150, 260, 115, 25);
-        emailLabel.setText("E-mail: ");
-        cpfLabel.setBounds(150, 290, 115, 25);
-        cpfLabel.setText("Cpf: ");
+        // config text field usuario
+        usuario.setBounds(470, 175, 200, 30);
+        usuario.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
-        // configuração do botão enviar
-        enviar.setText("Enviar");
-        enviar.setBounds(175, 350, 150, 50);
-        enviar.addActionListener(this);
+        // config text field nome
+        nome.setBounds(470, 325, 200, 30);
+        nome.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
-        cadastro.add(nome);
-        cadastro.add(idade);
-        cadastro.add(email);
-        cadastro.add(cpf);
-        cadastro.add(nomeLabel);
-        cadastro.add(idadeLabel);
-        cadastro.add(emailLabel);
-        cadastro.add(cpfLabel);
-        cadastro.add(enviar);
+        // config text field senha
+        senha.setBounds(470, 250, 200, 30);
+        senha.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
+        // configurações label senha
+        senhaLabel.setText("Senha ");
+        senhaLabel.setForeground(new Color(0, 0, 0));
+        senhaLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        senhaLabel.setBounds(470, 225, 125, 25);
+
+        // configurações label usuario
+        usuarioLabel.setText("Usuario ");
+        usuarioLabel.setForeground(new Color(0, 0, 0));
+        usuarioLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        usuarioLabel.setBounds(470, 150, 125, 25);
+
+        // onfig Label Bem vindo
+        bemVindo.setText("Bem Vindo");
+        bemVindo.setForeground(new Color(0, 0, 0));
+        bemVindo.setFont(new Font("Arial", Font.BOLD, 25));
+        bemVindo.setBounds(400, 40, 200, 30);
+
+        // config label credenciais
+        credenciais.setText("Insira suas Credenciais, por favor");
+        credenciais.setForeground(new Color(0, 0, 0));
+        credenciais.setFont(new Font("Arial", Font.BOLD, 13));
+        credenciais.setBounds(400, 63, 300, 30);
+
+        // config Label OrderControl
+        orderConttrl.setText("OrderControl");
+        orderConttrl.setForeground(new Color(0, 0, 0));
+        orderConttrl.setFont(new Font("Bauhaus 93", Font.PLAIN, 30));
+        orderConttrl.setBounds(105, 240, 300, 40);
+
+        // configuração botao login
+        loginButton.setText("Login");
+        loginButton.setBounds(470, 300, 200, 50);
+        loginButton.setFocusable(false);
+        loginButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
+        loginButton.setForeground(new Color(0, 0, 0));
+        loginButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        loginButton.addActionListener(this);
+
+        // configuração botão cadastro
+        cadastroButton.setText("Cadastrar");
+        cadastroButton.setBounds(470, 400, 200, 50);
+        cadastroButton.setFocusable(false);
+        cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
+        cadastroButton.setForeground(new Color(0, 0, 0));
+        cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        cadastroButton.addActionListener(this);
+
+        // onfiguração botão de saida
+        exitButton.setBounds(705, 0, 45, 45);
+        exitButton.setBackground(new Color(255, 255, 255));
+        exitButton.setFocusable(false);
+        exitButton.setFont(new Font("Arial", Font.BOLD, 20));
+        exitButton.setBorder(BorderFactory.createEmptyBorder());
+        exitButton.setForeground(new Color(0, 0, 0));
+        exitButton.addActionListener(this);
+
+        // configurações label
+        principalLabel.setBounds(95, 35, 200, 200);
+        principalLabel.setForeground(new Color(255, 0, 0));
+        principalLabel.setFont(new Font("MV Boli", Font.BOLD, 25));
+        principalLabel.setIcon(imageIcon2);
+        principalLabel.setHorizontalTextPosition(JLabel.CENTER);
+        principalLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        principalLabel.setIconTextGap(-70);
+        principalLabel.setVerticalAlignment(JLabel.CENTER);
+        principalLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        // adicionado
+        framePrincipal.add(principalLabel);
+        framePrincipal.add(nome);
+        framePrincipal.add(cadastroButton);
+        framePrincipal.add(exitButton);
+        framePrincipal.add(usuario);
+        framePrincipal.add(senha);
+        framePrincipal.add(senhaLabel);
+        framePrincipal.add(usuarioLabel);
+        framePrincipal.add(bemVindo);
+        framePrincipal.add(credenciais);
+        framePrincipal.add(orderConttrl);
+        framePrincipal.add(painel);
+        framePrincipal.setLayout(null);
     }
 
-    public String getNome() {
-        return nome.getText();
+    public String getSenha() {
+        return senha.getText();
     }
 
-    public String getIdade() {
-        return idade.getText();
+    public String getUsuario() {
+        return usuario.getText();
     }
 
-    public String getEmail() {
-        return email.getText();
-    }
-
-    public String getCpf() {
-        return cpf.getText();
-    }
+    // acionamento do botão login
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
 
-
+        if (o == loginButton) {
+            System.out.println(getUsuario());
+            System.out.println(getSenha());
+        } else if (o == cadastroButton) {
+            framePrincipal.dispose();
+            Cadastro cadastro = new Cadastro();
+        } else if (o == exitButton) {
+            framePrincipal.dispose();
+        }
     }
 }
