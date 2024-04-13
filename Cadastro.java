@@ -13,7 +13,7 @@ public class Cadastro extends JFrame implements ActionListener {
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     ImageIcon imageIcon1 = new ImageIcon("Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
-            new ImageIcon("Imagens\\Logo.png").getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+            new ImageIcon("Imagens\\Logo.png").getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
 
     CustomRadioButton masculino = new CustomRadioButton(new Color(0, 0, 0));
     CustomRadioButton feminino = new CustomRadioButton(new Color(0, 0, 0));
@@ -22,7 +22,7 @@ public class Cadastro extends JFrame implements ActionListener {
     JTextField usuario = new JTextField();
     JTextField email = new JTextField();
     JTextField cpf = new JTextField();
-    JPasswordField senha = new JPasswordField();
+    JTextField senha = new JTextField();
     JButton submit = new JButton("Enviar ");
     JLabel label = new JLabel();
     JLabel senhaLabel = new JLabel();
@@ -204,7 +204,7 @@ public class Cadastro extends JFrame implements ActionListener {
 
         if (o == cadastroButton) {
             framePrincipal.dispose();
-            Cadastro cadastro = new Cadastro();
+            TelaCadastroLogin tela = new TelaCadastroLogin();
         } else if (o == exitButton) {
             framePrincipal.dispose();
         }

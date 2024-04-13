@@ -14,7 +14,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     ImageIcon imageIcon1 = new ImageIcon("Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
-            new ImageIcon("Imagens\\Logo.png").getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+            new ImageIcon("Imagens\\Logo.png").getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
     // Border border = BorderFactory.createLineBorder(Color.RED,1);
 
     JTextField usuario = new JTextField();
@@ -26,6 +26,8 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     JLabel bemVindo = new JLabel();
     JLabel credenciais = new JLabel();
     JLabel orderConttrl = new JLabel();
+    JLabel descricao1 = new JLabel();
+    JLabel descricao2 = new JLabel();
 
     public TelaCadastroLogin() {
 
@@ -80,6 +82,18 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         orderConttrl.setFont(new Font("Bauhaus 93", Font.PLAIN, 30));
         orderConttrl.setBounds(105, 240, 300, 40);
 
+        // label escrição 1
+        descricao1.setText("Nós ajudadamos a agendar e gerenciar");
+        descricao1.setForeground(new Color(255, 255, 255));
+        descricao1.setFont(new Font("Arial", Font.BOLD, 16));
+        descricao1.setBounds(37, 390, 300, 100);
+
+        // label descrição 2
+        descricao2.setText("visitas e orçamentos de forma eficiente.");
+        descricao2.setForeground(new Color(255, 255, 255));
+        descricao2.setFont(new Font("Arial", Font.BOLD, 16));
+        descricao2.setBounds(37, 410, 300, 100);
+
         // configuração botao login
         loginButton.setText("Login");
         loginButton.setBounds(470, 375, 200, 50);
@@ -130,6 +144,8 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.add(bemVindo);
         framePrincipal.add(credenciais);
         framePrincipal.add(orderConttrl);
+        framePrincipal.add(descricao1);
+        framePrincipal.add(descricao2);
         framePrincipal.add(painel);
         framePrincipal.setLayout(null);
     }
