@@ -30,7 +30,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     public TelaCadastroLogin() {
 
         // configurações frame
-        framePrincipal.setSize(750, 500);
+        framePrincipal.setSize(750, 600);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrincipal.setResizable(false);
         framePrincipal.setUndecorated(true);
@@ -40,27 +40,27 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setIconImage(imageIcon1.getImage());
         
         // config painel
-        painel.setBounds(15, 15, 350, 470);  
+        painel.setBounds(15, 15, 350, 570);  
 
         // config text field usuario
-        usuario.setBounds(470, 175, 200, 30);
+        usuario.setBounds(470, 200, 200, 30);
         usuario.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // config text field senha
-        senha.setBounds(470, 250, 200, 30);
+        senha.setBounds(470, 275, 200, 30);
         senha.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // configurações label senha
         senhaLabel.setText("Senha ");
         senhaLabel.setForeground(new Color(0, 0, 0));
         senhaLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        senhaLabel.setBounds(470, 225, 125, 25);
+        senhaLabel.setBounds(470, 250, 125, 25);
 
         // configurações label usuario
         usuarioLabel.setText("Usuario ");
         usuarioLabel.setForeground(new Color(0, 0, 0));
         usuarioLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        usuarioLabel.setBounds(470, 150, 125, 25);
+        usuarioLabel.setBounds(470, 175, 125, 25);
 
         // onfig Label Bem vindo
         bemVindo.setText("Bem Vindo");
@@ -76,25 +76,25 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
 
         // config Label OrderControl
         orderConttrl.setText("OrderControl");
-        orderConttrl.setForeground(new Color(0, 0, 0));
+        orderConttrl.setForeground(new Color(255, 255, 255));
         orderConttrl.setFont(new Font("Bauhaus 93", Font.PLAIN, 30));
         orderConttrl.setBounds(105, 240, 300, 40);
 
         // configuração botao login
         loginButton.setText("Login");
-        loginButton.setBounds(470, 300, 200, 50);
+        loginButton.setBounds(470, 375, 200, 50);
         loginButton.setFocusable(false);
         loginButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
-        loginButton.setForeground(new Color(0, 0, 0));
+        loginButton.setForeground(new Color(255, 255, 255));
         loginButton.setBorder(BorderFactory.createRaisedBevelBorder());
         loginButton.addActionListener(this);
 
         // configuração botão cadastro
         cadastroButton.setText("Cadastrar");
-        cadastroButton.setBounds(470, 375, 200, 50);
+        cadastroButton.setBounds(470, 450, 200, 50);
         cadastroButton.setFocusable(false);
         cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
-        cadastroButton.setForeground(new Color(0, 0, 0));
+        cadastroButton.setForeground(new Color(255, 255, 255));
         cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
         cadastroButton.addActionListener(this);
 
