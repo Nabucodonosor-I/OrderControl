@@ -5,9 +5,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaCadastroLogin extends JFrame implements ActionListener {
+public class Cadastro extends JFrame implements ActionListener {
     JFrame framePrincipal = new JFrame();
-    RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54));
     RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54));
     JButton exitButton = new JButton("x");
     JLabel principalLabel = new JLabel();
@@ -15,21 +14,28 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     ImageIcon imageIcon1 = new ImageIcon("Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon("Imagens\\Logo.png").getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
-    // Border border = BorderFactory.createLineBorder(Color.RED,1);
+
+    CustomRadioButton masculino = new CustomRadioButton(new Color(0, 0, 0));
+    CustomRadioButton feminino = new CustomRadioButton(new Color(0, 0, 0));
+    ButtonGroup group = new ButtonGroup();
 
     JTextField usuario = new JTextField();
-    JPasswordField senha = new JPasswordField();
+    JTextField email = new JTextField();
+    JTextField cpf = new JTextField();
+    JTextField senha = new JTextField();
     JButton submit = new JButton("Enviar ");
     JLabel label = new JLabel();
     JLabel senhaLabel = new JLabel();
     JLabel usuarioLabel = new JLabel();
+    JLabel emaiLabel = new JLabel();
+    JLabel cpfLabel = new JLabel();
     JLabel bemVindo = new JLabel();
     JLabel credenciais = new JLabel();
     JLabel orderConttrl = new JLabel();
-    JLabel descricao1 = new JLabel();
-    JLabel descricao2 = new JLabel();
+    JLabel masculinoLabel = new JLabel();
+    JLabel femininoLabel = new JLabel();
 
-    public TelaCadastroLogin() {
+    public Cadastro() {
 
         // configurações frame
         framePrincipal.setSize(750, 600);
@@ -40,29 +46,49 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
         framePrincipal.setIconImage(imageIcon1.getImage());
-        
+
         // config painel
-        painel.setBounds(15, 15, 350, 570);  
+        painel.setBounds(15, 15, 350, 570);
 
         // config text field usuario
-        usuario.setBounds(470, 200, 200, 30);
+        usuario.setBounds(470, 150, 200, 30);
         usuario.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
+        // config text field nome
+        email.setBounds(470, 300, 200, 30);
+        email.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
+
+        // config text fild cpf
+        cpf.setBounds(470, 375, 200, 30);
+        cpf.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
+
         // config text field senha
-        senha.setBounds(470, 275, 200, 30);
+        senha.setBounds(470, 225, 200, 30);
         senha.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // configurações label senha
         senhaLabel.setText("Senha ");
         senhaLabel.setForeground(new Color(0, 0, 0));
         senhaLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        senhaLabel.setBounds(470, 250, 125, 25);
+        senhaLabel.setBounds(470, 200, 125, 25);
 
-        // configurações label usuario
-        usuarioLabel.setText("Usuario ");
+        // configurações label nome
+        usuarioLabel.setText("Nome completo ");
         usuarioLabel.setForeground(new Color(0, 0, 0));
         usuarioLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        usuarioLabel.setBounds(470, 175, 125, 25);
+        usuarioLabel.setBounds(470, 125, 125, 25);
+
+        // config label email
+        emaiLabel.setText("Insira seu e-mail ");
+        emaiLabel.setForeground(new Color(0, 0, 0));
+        emaiLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        emaiLabel.setBounds(470, 275, 125, 25);
+
+        // config label cpfcpfLabel
+        cpfLabel.setText("Insira seu CPF ");
+        cpfLabel.setForeground(new Color(0, 0, 0));
+        cpfLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        cpfLabel.setBounds(470, 350, 125, 25);
 
         // onfig Label Bem vindo
         bemVindo.setText("Bem Vindo");
@@ -71,7 +97,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         bemVindo.setBounds(400, 40, 200, 30);
 
         // config label credenciais
-        credenciais.setText("Insira suas Credenciais, por favor");
+        credenciais.setText("Insira seus Dados, por favor");
         credenciais.setForeground(new Color(0, 0, 0));
         credenciais.setFont(new Font("Arial", Font.BOLD, 13));
         credenciais.setBounds(400, 63, 300, 30);
@@ -82,35 +108,34 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         orderConttrl.setFont(new Font("Bauhaus 93", Font.PLAIN, 30));
         orderConttrl.setBounds(105, 240, 300, 40);
 
-        // label escrição 1
-        descricao1.setText("Nós ajudadamos a agendar e gerenciar");
-        descricao1.setForeground(new Color(255, 255, 255));
-        descricao1.setFont(new Font("Arial", Font.BOLD, 16));
-        descricao1.setBounds(37, 390, 300, 100);
+        // config Label feminino
+        femininoLabel.setText("Feminino ");
+        femininoLabel.setForeground(new Color(0, 0, 0));
+        femininoLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        femininoLabel.setBounds(590, 429, 80, 25);
 
-        // label descrição 2
-        descricao2.setText("visitas e orçamentos de forma eficiente.");
-        descricao2.setForeground(new Color(255, 255, 255));
-        descricao2.setFont(new Font("Arial", Font.BOLD, 16));
-        descricao2.setBounds(37, 410, 300, 100);
-
-        // configuração botao login
-        loginButton.setText("Login");
-        loginButton.setBounds(470, 375, 200, 50);
-        loginButton.setFocusable(false);
-        loginButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
-        loginButton.setForeground(new Color(255, 255, 255));
-        loginButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        loginButton.addActionListener(this);
+        // config Label feminino
+        masculinoLabel.setText("Masculino ");
+        masculinoLabel.setForeground(new Color(0, 0, 0));
+        masculinoLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        masculinoLabel.setBounds(490, 429, 80, 25);
 
         // configuração botão cadastro
         cadastroButton.setText("Cadastrar");
-        cadastroButton.setBounds(470, 450, 200, 50);
+        cadastroButton.setBounds(470, 480, 200, 50);
         cadastroButton.setFocusable(false);
         cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
         cadastroButton.setForeground(new Color(255, 255, 255));
         cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
         cadastroButton.addActionListener(this);
+
+        // config botão masculino
+        masculino.setBounds(470, 430, 20, 20);
+        masculino.setOpaque(false);
+
+        // confing botão feminino 
+        feminino.setBounds(570, 430, 20, 20);
+        feminino.setOpaque(false);
 
         // onfiguração botão de saida
         exitButton.setBounds(705, 0, 45, 45);
@@ -132,20 +157,29 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         principalLabel.setVerticalAlignment(JLabel.CENTER);
         principalLabel.setHorizontalAlignment(JLabel.CENTER);
 
+        // config grupo de botão 
+        group.add(masculino);
+        group.add(feminino);
+
         // adicionado
         framePrincipal.add(principalLabel);
-        framePrincipal.add(loginButton);
+        framePrincipal.add(email);
+        framePrincipal.add(cpf);
         framePrincipal.add(cadastroButton);
+        framePrincipal.add(masculino);
+        framePrincipal.add(feminino);
         framePrincipal.add(exitButton);
         framePrincipal.add(usuario);
         framePrincipal.add(senha);
         framePrincipal.add(senhaLabel);
         framePrincipal.add(usuarioLabel);
+        framePrincipal.add(emaiLabel);
+        framePrincipal.add(cpfLabel);
+        framePrincipal.add(femininoLabel);
+        framePrincipal.add(masculinoLabel);
         framePrincipal.add(bemVindo);
         framePrincipal.add(credenciais);
         framePrincipal.add(orderConttrl);
-        framePrincipal.add(descricao1);
-        framePrincipal.add(descricao2);
         framePrincipal.add(painel);
         framePrincipal.setLayout(null);
     }
@@ -158,18 +192,19 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         return usuario.getText();
     }
 
+    public String getEmail() {
+        return email.getText();
+    }
+
     // acionamento do botão login
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
 
-        if (o == loginButton) {
-            System.out.println(getUsuario());
-            System.out.println(getSenha());
-        } else if (o == cadastroButton) {
+        if (o == cadastroButton) {
             framePrincipal.dispose();
-            Cadastro cadastro = new Cadastro();
+            TelaCadastroLogin tela = new TelaCadastroLogin();
         } else if (o == exitButton) {
             framePrincipal.dispose();
         }
