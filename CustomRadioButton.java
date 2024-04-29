@@ -17,23 +17,23 @@ public class CustomRadioButton extends JRadioButton {
         float espessuraLinha = 2.0f; 
         g2.setStroke(new BasicStroke(espessuraLinha));
         
-        // Obter as dimensões do JRadioButton
+        // Obtem as dimensões do JRadioButton
         int buttonSize = getHeight(); 
         int diameter = buttonSize / 2; 
         
-        // Calcular a posição do círculo
+        // Calcula a posição do círculo
         int x = (getWidth() - diameter) / 2;
         int y = (getHeight() - diameter) / 2;
         
         if (isSelected()) {
-            // Definir a cor desejada para o círculo selecionado
+            // Defini a cor desejada para o círculo selecionado
             g2.setColor(Color);
-            // Desenhar o círculo preenchido
+            // Desenha o círculo preenchido
             g2.fillOval(x, y, diameter, diameter);
         } else {
-            // Definir uma cor para o estado não selecionado, se desejado
+            // Defini uma cor para o estado não selecionado
             g2.setColor(Color);
-            // Desenhar um círculo de contorno
+            // Desenha um círculo de contorno
             g2.drawOval(x, y, diameter, diameter);
         }
         g2.dispose();

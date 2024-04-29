@@ -1,5 +1,8 @@
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 public class RoundedPanel extends JPanel {
     private int cornerRadius;// tamanho do raio

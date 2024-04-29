@@ -27,7 +27,7 @@ public class Cadastro extends JFrame implements ActionListener {
     JLabel label = new JLabel();
     JLabel senhaLabel = new JLabel();
     JLabel usuarioLabel = new JLabel();
-    JLabel emaiLabel = new JLabel();
+    JLabel emailLabel = new JLabel();
     JLabel cpfLabel = new JLabel();
     JLabel bemVindo = new JLabel();
     JLabel credenciais = new JLabel();
@@ -79,10 +79,10 @@ public class Cadastro extends JFrame implements ActionListener {
         usuarioLabel.setBounds(470, 125, 125, 25);
 
         // config label email
-        emaiLabel.setText("Insira seu e-mail ");
-        emaiLabel.setForeground(new Color(0, 0, 0));
-        emaiLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        emaiLabel.setBounds(470, 275, 125, 25);
+        emailLabel.setText("Insira seu e-mail ");
+        emailLabel.setForeground(new Color(0, 0, 0));
+        emailLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        emailLabel.setBounds(470, 275, 125, 25);
 
         // config label cpfcpfLabel
         cpfLabel.setText("Insira seu CPF ");
@@ -173,7 +173,7 @@ public class Cadastro extends JFrame implements ActionListener {
         framePrincipal.add(senha);
         framePrincipal.add(senhaLabel);
         framePrincipal.add(usuarioLabel);
-        framePrincipal.add(emaiLabel);
+        framePrincipal.add(emailLabel);
         framePrincipal.add(cpfLabel);
         framePrincipal.add(femininoLabel);
         framePrincipal.add(masculinoLabel);

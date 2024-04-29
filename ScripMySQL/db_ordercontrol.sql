@@ -1,0 +1,10 @@
+create database db_ordercontrol;
+use db_ordercontrol;
+create table tb_cadastro(
+	id int primary key auto_increment,
+    nome varchar(200),
+    senha varchar(200),
+    email varchar(200),
+    cpf int,
+    sexo varchar(20)
+);

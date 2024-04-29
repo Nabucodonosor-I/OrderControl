@@ -11,9 +11,9 @@ public class RoundedButton extends JButton {
     public RoundedButton(int cornerRadius, Color backgroundColor) {
         this.cornerRadius = cornerRadius;
         this.backgroundColor = backgroundColor;
-        setOpaque(false); // Define como transparente para evitar um fundo padrão
-        setContentAreaFilled(false); // Não preencher a área interna do botão
-        setBorderPainted(false); // Não pintar a borda padrão do botão
+        setOpaque(false); 
+        setContentAreaFilled(false); 
+        setBorderPainted(false); 
     }
 
     @Override
