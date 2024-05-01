@@ -1,4 +1,10 @@
+package com.ordercontrol;
+
 import javax.swing.*;
+
+import com.ordercontrol.ExtendsSwing.*;
+
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -133,7 +139,7 @@ public class Cadastro extends JFrame implements ActionListener {
         masculino.setBounds(470, 430, 20, 20);
         masculino.setOpaque(false);
 
-        // confing botão feminino 
+        // confing botão feminino
         feminino.setBounds(570, 430, 20, 20);
         feminino.setOpaque(false);
 
@@ -157,7 +163,7 @@ public class Cadastro extends JFrame implements ActionListener {
         principalLabel.setVerticalAlignment(JLabel.CENTER);
         principalLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        // config grupo de botão 
+        // config grupo de botão
         group.add(masculino);
         group.add(feminino);
 

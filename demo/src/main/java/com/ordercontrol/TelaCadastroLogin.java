@@ -1,3 +1,8 @@
+package com.ordercontrol;
+
+import com.ordercontrol.ExtendsSwing.*;
+
+
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,9 +17,12 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     JButton exitButton = new JButton("x");
     JLabel principalLabel = new JLabel();
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
-    ImageIcon imageIcon1 = new ImageIcon("Imagens\\68386.png");
+    ImageIcon imageIcon1 = new ImageIcon(
+            "C:\\Users\\henrr\\Documents\\GitHub\\MegaFibraOS\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
-            new ImageIcon("Imagens\\Logo.png").getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+            new ImageIcon(
+                    "C:\\Users\\henrr\\Documents\\GitHub\\MegaFibraOS\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
+                    .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
     // Border border = BorderFactory.createLineBorder(Color.RED,1);
 
     JTextField usuario = new JTextField();
@@ -40,9 +48,9 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
         framePrincipal.setIconImage(imageIcon1.getImage());
-        
+
         // config painel
-        painel.setBounds(15, 15, 350, 570);  
+        painel.setBounds(15, 15, 350, 570);
 
         // config text field usuario
         usuario.setBounds(470, 200, 200, 30);
@@ -83,7 +91,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         orderConttrl.setBounds(105, 240, 300, 40);
 
         // label escrição 1
-        descricao1.setText("Nós ajudadamos a agendar e gerenciar");
+        descricao1.setText("Nós ajudamos a agendar e gerenciar");
         descricao1.setForeground(new Color(255, 255, 255));
         descricao1.setFont(new Font("Arial", Font.BOLD, 16));
         descricao1.setBounds(37, 390, 300, 100);

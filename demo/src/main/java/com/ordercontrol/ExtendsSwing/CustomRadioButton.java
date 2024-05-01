@@ -1,3 +1,5 @@
+package com.ordercontrol.ExtendsSwing;
+
 import javax.swing.*;
 import java.awt.*;
 

@@ -1,3 +1,5 @@
+package com.ordercontrol.ExtendsSwing;
+
 import java.awt.*;
 import javax.swing.border.AbstractBorder;
 
@@ -35,5 +37,5 @@ public class BordaCantoArredondado extends AbstractBorder {
 /*
  * https://www.guj.com.br/t/bordas-arredondadas-em-java/422941/2
  * 
- * agradeimento ao David Buzatto
+ * agradeimento ao David Buzatto 
  */

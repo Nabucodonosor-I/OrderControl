@@ -1,19 +1,19 @@
+package com.ordercontrol.ExtendsSwing;
+
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import javax.swing.*;
 
-public class RoundedButton extends JButton {
-    private int cornerRadius;
-    private Color backgroundColor;
+public class RoundedPanel extends JPanel {
+    private int cornerRadius;// tamanho do raio
+    private Color backgroundColor;// Definir a cor de fundo
 
-    public RoundedButton(int cornerRadius, Color backgroundColor) {
+    public RoundedPanel(int cornerRadius, Color backgroundColor) {
         this.cornerRadius = cornerRadius;
         this.backgroundColor = backgroundColor;
-        setOpaque(false); 
-        setContentAreaFilled(false); 
-        setBorderPainted(false); 
+        setOpaque(false); // Define como transparente para tirar um fundo padrão
     }
 
     @Override
@@ -21,6 +21,7 @@ public class RoundedButton extends JButton {
 
         Graphics2D g2 = (Graphics2D) g.create();
 
+        // igual onfig de jogo kkkkkk
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(backgroundColor);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), cornerRadius, cornerRadius);
