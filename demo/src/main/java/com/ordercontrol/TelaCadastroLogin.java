@@ -18,10 +18,10 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     JLabel principalLabel = new JLabel();
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     ImageIcon imageIcon1 = new ImageIcon(
-            "C:\\Users\\henrr\\Documents\\GitHub\\MegaFibraOS\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
+            "C:\\Users\\henrr\\Documents\\GitHub\\OrderControl\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon(
-                    "C:\\Users\\henrr\\Documents\\GitHub\\MegaFibraOS\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
+                    "C:\\Users\\henrr\\Documents\\GitHub\\OrderControl\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
                     .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
     // Border border = BorderFactory.createLineBorder(Color.RED,1);
 

@@ -13,7 +13,7 @@ public class Usuario{
     private static String admin;
 
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
     public static String getNome() {
@@ -54,7 +54,7 @@ public class Usuario{
     } 
 
     public static String getAdmin() {
-        return senha;
+        return admin;
     }
     public void setAdmin(String admin) {
         Usuario.admin = admin;
