@@ -2,6 +2,7 @@ package com.ordercontrol;
 
 import com.ordercontrol.ExtendsSwing.*;
 
+import Conexao.CRUD.ValidarUsuario;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -11,6 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TelaCadastroLogin extends JFrame implements ActionListener {
+
+    String senhaUser;
+    String usuarioUser;
+    
+    ValidarUsuario validar = new ValidarUsuario();
+
     JFrame framePrincipal = new JFrame();
     RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54));
     RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54));
@@ -158,12 +165,15 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setLayout(null);
     }
 
-    public String getSenha() {
-        return senha.getText();
+    public String getTextSenha() {
+        System.out.println(senha.getText());
+        return senhaUser = senha.getText();
     }
 
-    public String getUsuario() {
-        return usuario.getText();
+    public String getTextUsuario() {
+        System.out.println(usuario.getText());
+        return usuarioUser = usuario.getText();
+        
     }
 
     // acionamento do botão login
@@ -173,8 +183,11 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         Object o = e.getSource();
 
         if (o == loginButton) {
-            System.out.println(getUsuario());
-            System.out.println(getSenha());
+            int idUsuario = validar.lerUsuario();
+            if(idUsuario != 0) {
+                Frame frame = new Frame();
+                framePrincipal.dispose();
+            }
         } else if (o == cadastroButton) {
             framePrincipal.dispose();
             Cadastro cadastro = new Cadastro();
