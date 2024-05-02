@@ -1,9 +1,9 @@
 package com.ordercontrol;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
 import com.ordercontrol.ExtendsSwing.*;
-
 
 import java.awt.Color;
 import java.awt.Font;
@@ -29,6 +29,7 @@ public class Cadastro extends JFrame implements ActionListener {
     JTextField email = new JTextField();
     JTextField cpf = new JTextField();
     JTextField senha = new JTextField();
+    JTextField idade = new JTextField();
     JButton submit = new JButton("Enviar ");
     JLabel label = new JLabel();
     JLabel senhaLabel = new JLabel();
@@ -40,9 +41,10 @@ public class Cadastro extends JFrame implements ActionListener {
     JLabel orderConttrl = new JLabel();
     JLabel masculinoLabel = new JLabel();
     JLabel femininoLabel = new JLabel();
+    JLabel idadeLabel = new JLabel();
+    JCheckBox adminCheck = new JCheckBox("Usuário Administrador");
 
     public Cadastro() {
-
         // configurações frame
         framePrincipal.setSize(750, 600);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,56 +59,66 @@ public class Cadastro extends JFrame implements ActionListener {
         painel.setBounds(15, 15, 350, 570);
 
         // config text field usuario
-        usuario.setBounds(470, 150, 200, 30);
+        usuario.setBounds(470, 135, 200, 30);
         usuario.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
-        // config text field nome
-        email.setBounds(470, 300, 200, 30);
+        // config text field e-mail
+        email.setBounds(470, 275, 200, 30);
         email.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // config text fild cpf
-        cpf.setBounds(470, 375, 200, 30);
+        cpf.setBounds(470, 345, 200, 30);
         cpf.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // config text field senha
-        senha.setBounds(470, 225, 200, 30);
+        senha.setBounds(470, 210, 200, 30);
         senha.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
+
+        // config text field idade
+        idade.setBounds(470, 405, 50, 30);
+        idade.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // configurações label senha
         senhaLabel.setText("Senha ");
         senhaLabel.setForeground(new Color(0, 0, 0));
         senhaLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        senhaLabel.setBounds(470, 200, 125, 25);
+        senhaLabel.setBounds(470, 185, 125, 25);
 
         // configurações label nome
         usuarioLabel.setText("Nome completo ");
         usuarioLabel.setForeground(new Color(0, 0, 0));
         usuarioLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        usuarioLabel.setBounds(470, 125, 125, 25);
+        usuarioLabel.setBounds(470, 100, 125, 25);
 
         // config label email
-        emailLabel.setText("Insira seu e-mail ");
+        emailLabel.setText("E-mail ");
         emailLabel.setForeground(new Color(0, 0, 0));
         emailLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        emailLabel.setBounds(470, 275, 125, 25);
+        emailLabel.setBounds(470, 250, 125, 25);
 
-        // config label cpfcpfLabel
-        cpfLabel.setText("Insira seu CPF ");
+        // config label idade
+        idadeLabel.setText("Idade");
+        idadeLabel.setForeground(new Color(0, 0, 0));
+        idadeLabel.setFont(new Font("Arial", Font.BOLD, 15));
+        idadeLabel.setBounds(470, 380, 125, 25);
+
+        // config label cpfLabel
+        cpfLabel.setText("CPF");
         cpfLabel.setForeground(new Color(0, 0, 0));
         cpfLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        cpfLabel.setBounds(470, 350, 125, 25);
+        cpfLabel.setBounds(470, 320, 125, 25);
 
-        // onfig Label Bem vindo
+        // config Label Bem vindo
         bemVindo.setText("Bem Vindo");
-        bemVindo.setForeground(new Color(0, 0, 0));
+        bemVindo.setForeground(new Color(255, 255, 255));
         bemVindo.setFont(new Font("Arial", Font.BOLD, 25));
-        bemVindo.setBounds(400, 40, 200, 30);
+        bemVindo.setBounds(120, 40, 300, 40);
 
         // config label credenciais
-        credenciais.setText("Insira seus Dados, por favor");
+        credenciais.setText("Insira seus dados: ");
         credenciais.setForeground(new Color(0, 0, 0));
         credenciais.setFont(new Font("Arial", Font.BOLD, 13));
-        credenciais.setBounds(400, 63, 300, 30);
+        credenciais.setBounds(400, 40, 300, 30);
 
         // config Label OrderControl
         orderConttrl.setText("OrderControl");
@@ -118,17 +130,17 @@ public class Cadastro extends JFrame implements ActionListener {
         femininoLabel.setText("Feminino ");
         femininoLabel.setForeground(new Color(0, 0, 0));
         femininoLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        femininoLabel.setBounds(590, 429, 80, 25);
+        femininoLabel.setBounds(590, 450, 80, 25);
 
         // config Label feminino
         masculinoLabel.setText("Masculino ");
         masculinoLabel.setForeground(new Color(0, 0, 0));
         masculinoLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        masculinoLabel.setBounds(490, 429, 80, 25);
+        masculinoLabel.setBounds(490, 450, 80, 25);
 
         // configuração botão cadastro
         cadastroButton.setText("Cadastrar");
-        cadastroButton.setBounds(470, 480, 200, 50);
+        cadastroButton.setBounds(470, 530, 200, 50);
         cadastroButton.setFocusable(false);
         cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
         cadastroButton.setForeground(new Color(255, 255, 255));
@@ -136,14 +148,20 @@ public class Cadastro extends JFrame implements ActionListener {
         cadastroButton.addActionListener(this);
 
         // config botão masculino
-        masculino.setBounds(470, 430, 20, 20);
+        masculino.setBounds(470, 450, 20, 20);
         masculino.setOpaque(false);
 
         // confing botão feminino
-        feminino.setBounds(570, 430, 20, 20);
+        feminino.setBounds(570, 450, 20, 20);
         feminino.setOpaque(false);
 
-        // onfiguração botão de saida
+        // Config Check admin
+        adminCheck.setBounds(470, 480, 200, 30);
+        adminCheck.setText("Usuário Administrador");
+        adminCheck.setBackground(new Color(255, 255, 255));
+        adminCheck.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 14));
+
+        // Configuração botão de saida
         exitButton.setBounds(705, 0, 45, 45);
         exitButton.setBackground(new Color(255, 255, 255));
         exitButton.setFocusable(false);
@@ -187,7 +205,11 @@ public class Cadastro extends JFrame implements ActionListener {
         framePrincipal.add(credenciais);
         framePrincipal.add(orderConttrl);
         framePrincipal.add(painel);
+        framePrincipal.add(adminCheck);
+        framePrincipal.add(idadeLabel);
+        framePrincipal.add(idade);
         framePrincipal.setLayout(null);
+
     }
 
     public String getSenha() {
@@ -202,6 +224,29 @@ public class Cadastro extends JFrame implements ActionListener {
         return email.getText();
     }
 
+    // Valida se idade é um número ,se não, insere como zero
+    // Futuramente não deixar concluir cadastro * 
+    public Integer getIdade() {
+        try{
+           int intIdade = Integer.parseInt(idade.getText());
+           return intIdade;
+        }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Idade inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return 0; 
+        }
+    }
+    
+    //public String getSexo(){
+    //    if(masculino = 1 && feminino = 0){
+
+      //  }
+    //}
+
+    public String getCpf() {
+        return cpf.getText();
+    }
+ 
+ 
     // acionamento do botão login
 
     @Override
