@@ -9,7 +9,7 @@ import Conexao.Usuario;
 public class Delete {
     public void deletarUsuario() {
         // 1: Definir o comando SQL
-        String sql = "DELETE FROM tb_ordercontrol WHERE codigo = ?";
+        String sql = "DELETE FROM tb_cadastro WHERE codigo = ?";
         // 2: Abrir uma conexão
         ConnectionFactory factory = new ConnectionFactory();
         try (Connection c = factory.obtemConexao()) {

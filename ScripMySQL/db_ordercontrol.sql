@@ -7,6 +7,6 @@ CREATE TABLE IF NOT EXISTS tb_cadastro(
     email varchar(200),
     idade int,
     cpf int,
-    admin boolean,
-    sexo varchar(20)
+    admin int,
+    sexo varchar(1)
 );

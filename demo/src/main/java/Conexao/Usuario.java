@@ -1,7 +1,6 @@
 package Conexao;
 
 
-
 public class Usuario{
     private static int id;
     private static String nome;
