@@ -165,9 +165,10 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setLayout(null);
     }
 
-    public String getTextSenha() {
+
+    public String getPassword() {
         System.out.println(senha.getText());
-        return senhaUser = senha.getText();
+        return senha.getText();
     }
 
     public String getTextUsuario() {
@@ -183,10 +184,15 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         Object o = e.getSource();
 
         if (o == loginButton) {
-            int idUsuario = validar.lerUsuario();
+            String usuarioText = getTextUsuario();
+            String senhaChars = getPassword();
+            int idUsuario = validar.lerUsuario(usuarioText, senhaChars);
+
             if(idUsuario != 0) {
                 Frame frame = new Frame();
                 framePrincipal.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro");
             }
         } else if (o == cadastroButton) {
             framePrincipal.dispose();
