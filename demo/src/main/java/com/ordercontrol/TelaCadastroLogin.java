@@ -15,7 +15,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
 
     String senhaUser;
     String usuarioUser;
-    
+
     ValidarUsuario validar = new ValidarUsuario();
 
     JFrame framePrincipal = new JFrame();
@@ -165,7 +165,6 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         framePrincipal.setLayout(null);
     }
 
-
     public String getPassword() {
         System.out.println(senha.getText());
         return senha.getText();
@@ -174,7 +173,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     public String getTextUsuario() {
         System.out.println(usuario.getText());
         return usuarioUser = usuario.getText();
-        
+
     }
 
     // acionamento do botão login
@@ -184,16 +183,31 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         Object o = e.getSource();
 
         if (o == loginButton) {
+
             String usuarioText = getTextUsuario();
             String senhaChars = getPassword();
-            int idUsuario = validar.lerUsuario(usuarioText, senhaChars);
 
-            if(idUsuario != 0) {
-                Frame frame = new Frame();
-                framePrincipal.dispose();
+            if (getTextUsuario() == null && getPassword() == null) {
+
+                JLabel empty = new JLabel();
+                empty.setText("Campos Obrigatorios");
+                empty.setForeground(new Color(255, 0, 0));
+                empty.setFont(new Font("Arial", Font.BOLD, 12));
+                empty.setBounds(470, 150, 300, 100);
+                framePrincipal.add(empty);
+
+            } else if (getTextUsuario() != null && getPassword() != null) {
+
+                int idUsuario = validar.lerUsuario(usuarioText, senhaChars);
+
+                if (idUsuario != 0) {
+                    Frame frame = new Frame();
+                    framePrincipal.dispose();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Erro");
             }
+
         } else if (o == cadastroButton) {
             framePrincipal.dispose();
             Cadastro cadastro = new Cadastro();
