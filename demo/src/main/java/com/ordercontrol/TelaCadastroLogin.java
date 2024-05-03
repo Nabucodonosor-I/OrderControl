@@ -187,25 +187,28 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
             String usuarioText = getTextUsuario();
             String senhaChars = getPassword();
 
-            if (getTextUsuario() == null && getPassword() == null) {
+            if (getTextUsuario().isEmpty() || getPassword().isEmpty()) {
 
                 JLabel empty = new JLabel();
                 empty.setText("Campos Obrigatorios");
                 empty.setForeground(new Color(255, 0, 0));
                 empty.setFont(new Font("Arial", Font.BOLD, 12));
-                empty.setBounds(470, 150, 300, 100);
-                framePrincipal.add(empty);
+                empty.setBounds(470, 100, 200, 100);
+                add(empty);
+                repaint();   
 
-            } else if (getTextUsuario() != null && getPassword() != null) {
+            } else {
 
                 int idUsuario = validar.lerUsuario(usuarioText, senhaChars);
 
                 if (idUsuario != 0) {
                     Frame frame = new Frame();
                     framePrincipal.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuarios ou senha invalidos");
+                    return;
+
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Erro");
             }
 
         } else if (o == cadastroButton) {
