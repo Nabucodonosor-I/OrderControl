@@ -16,19 +16,21 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     String senhaUser;
     String usuarioUser;
 
+    String currentDirectory = System.getProperty("user.dir");
+
     ValidarUsuario validar = new ValidarUsuario();
 
     JFrame framePrincipal = new JFrame();
-    RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54));
-    RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54));
+    RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54), null);
+    // RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
     JButton exitButton = new JButton("x");
     JLabel principalLabel = new JLabel();
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     ImageIcon imageIcon1 = new ImageIcon(
-            "C:\\Users\\henrr\\Documents\\GitHub\\OrderControl\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
+            currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon(
-                    "C:\\Users\\henrr\\Documents\\GitHub\\OrderControl\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
+                    currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
                     .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
     // Border border = BorderFactory.createLineBorder(Color.RED,1);
 
@@ -49,22 +51,26 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         // configurações frame
         framePrincipal.setSize(750, 600);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        framePrincipal.setTitle("Order Control");
         framePrincipal.setResizable(false);
-        framePrincipal.setUndecorated(true);
+        // framePrincipal.setUndecorated(true);
+        // framePrincipal.setOpacity(0.8f);
         framePrincipal.setVisible(true);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
         framePrincipal.setIconImage(imageIcon1.getImage());
 
         // config painel
-        painel.setBounds(15, 15, 350, 570);
+        painel.setBounds(15, 15, 350, 530);
 
         // config text field usuario
         usuario.setBounds(470, 200, 200, 30);
+        usuario.setHorizontalAlignment(SwingConstants.CENTER);
         usuario.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // config text field senha
         senha.setBounds(470, 275, 200, 30);
+        senha.setHorizontalAlignment(SwingConstants.CENTER);
         senha.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // configurações label senha
@@ -119,13 +125,13 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         loginButton.addActionListener(this);
 
         // configuração botão cadastro
-        cadastroButton.setText("Cadastrar");
-        cadastroButton.setBounds(470, 450, 200, 50);
-        cadastroButton.setFocusable(false);
-        cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
-        cadastroButton.setForeground(new Color(255, 255, 255));
-        cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        cadastroButton.addActionListener(this);
+        // cadastroButton.setText("Cadastrar");
+        // cadastroButton.setBounds(470, 450, 200, 50);
+        // cadastroButton.setFocusable(false);
+        // cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
+        // cadastroButton.setForeground(new Color(255, 255, 255));
+        // cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        // cadastroButton.addActionListener(this);
 
         // onfiguração botão de saida
         exitButton.setBounds(705, 0, 45, 45);
@@ -150,8 +156,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         // adicionado
         framePrincipal.add(principalLabel);
         framePrincipal.add(loginButton);
-        framePrincipal.add(cadastroButton);
-        framePrincipal.add(exitButton);
+        // framePrincipal.add(exitButton);
         framePrincipal.add(usuario);
         framePrincipal.add(senha);
         framePrincipal.add(senhaLabel);
@@ -166,12 +171,10 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     }
 
     public String getPassword() {
-        System.out.println(senha.getText());
         return senha.getText();
     }
 
     public String getTextUsuario() {
-        System.out.println(usuario.getText());
         return usuarioUser = usuario.getText();
 
     }
@@ -194,26 +197,26 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
                 empty.setForeground(new Color(255, 0, 0));
                 empty.setFont(new Font("Arial", Font.BOLD, 12));
                 empty.setBounds(470, 100, 200, 100);
-                add(empty);
-                repaint();   
+                framePrincipal.add(empty);
+                framePrincipal.repaint();
 
             } else {
 
                 int idUsuario = validar.lerUsuario(usuarioText, senhaChars);
 
                 if (idUsuario != 0) {
-                    Frame frame = new Frame();
-                    framePrincipal.dispose();
+                    framePrincipal.dispose();              
+                    FrameCadastroEvnt frame = new FrameCadastroEvnt();      
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuarios ou senha invalidos");
-                    return;
-
+                    JLabel erro = new JLabel();
+                    erro.setText("Usuarios ou senha invalidos");
+                    erro.setForeground(new Color(255, 0, 0));
+                    erro.setFont(new Font("Arial", Font.BOLD, 12));
+                    erro.setBounds(470, 100, 200, 100);
+                    framePrincipal.add(erro);
+                    framePrincipal.repaint();
                 }
             }
-
-        } else if (o == cadastroButton) {
-            framePrincipal.dispose();
-            Cadastro cadastro = new Cadastro();
         } else if (o == exitButton) {
             framePrincipal.dispose();
         }

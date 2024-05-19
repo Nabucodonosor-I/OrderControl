@@ -5,13 +5,12 @@ import javax.swing.*;
 import com.ordercontrol.ExtendsSwing.*;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Cadastro extends JFrame implements ActionListener {
+public class AddEvento extends JFrame implements ActionListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
@@ -51,7 +50,7 @@ public class Cadastro extends JFrame implements ActionListener {
     JLabel idadeLabel = new JLabel();
     CustomRadioButton adminCheck = new CustomRadioButton(new Color(0, 0, 0));
 
-    public Cadastro() {
+    public AddEvento() {
         // configurações frame
         framePrincipal.setSize(750, 600);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,7 +62,7 @@ public class Cadastro extends JFrame implements ActionListener {
         framePrincipal.setIconImage(imageIcon1.getImage());
 
         // config painel
-        painel.setBounds(15, 15, 350, 530);
+        // painel.setBounds(15, 15, 350, 530);
 
         // config text field usuario
         usuario.setBounds(470, 115, 200, 30);
@@ -91,31 +90,31 @@ public class Cadastro extends JFrame implements ActionListener {
         idade.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // configurações label senha
-        senhaLabel.setText("Senha ");
+        senhaLabel.setText("Data ");
         senhaLabel.setForeground(new Color(0, 0, 0));
         senhaLabel.setFont(new Font("Arial", Font.BOLD, 15));
         senhaLabel.setBounds(470, 165, 125, 25);
 
         // configurações label nome
-        usuarioLabel.setText("Nome completo ");
+        usuarioLabel.setText("Nome do evento ");
         usuarioLabel.setForeground(new Color(0, 0, 0));
         usuarioLabel.setFont(new Font("Arial", Font.BOLD, 15));
         usuarioLabel.setBounds(470, 80, 125, 25);
 
         // config label email
-        emailLabel.setText("E-mail ");
+        emailLabel.setText("Nome do cliente ");
         emailLabel.setForeground(new Color(0, 0, 0));
         emailLabel.setFont(new Font("Arial", Font.BOLD, 15));
         emailLabel.setBounds(470, 230, 125, 25);
 
         // config label idade
-        idadeLabel.setText("Idade");
+        idadeLabel.setText("Local");
         idadeLabel.setForeground(new Color(0, 0, 0));
         idadeLabel.setFont(new Font("Arial", Font.BOLD, 15));
         idadeLabel.setBounds(470, 360, 125, 25);
 
         // config label cpfLabel
-        cpfLabel.setText("CPF");
+        cpfLabel.setText("CEP");
         cpfLabel.setForeground(new Color(0, 0, 0));
         cpfLabel.setFont(new Font("Arial", Font.BOLD, 15));
         cpfLabel.setBounds(470, 300, 125, 25);
@@ -139,13 +138,13 @@ public class Cadastro extends JFrame implements ActionListener {
         orderConttrl.setBounds(105, 240, 300, 40);
 
         // config Label feminino
-        femininoLabel.setText("Feminino ");
+        femininoLabel.setText("Orçamento ");
         femininoLabel.setForeground(new Color(0, 0, 0));
         femininoLabel.setFont(new Font("Arial", Font.BOLD, 15));
         femininoLabel.setBounds(590, 430, 80, 25);
 
         // config Label feminino
-        masculinoLabel.setText("Masculino ");
+        masculinoLabel.setText("Ordem de serviço ");
         masculinoLabel.setForeground(new Color(0, 0, 0));
         masculinoLabel.setFont(new Font("Arial", Font.BOLD, 15));
         masculinoLabel.setBounds(490, 430, 80, 25);
@@ -207,7 +206,6 @@ public class Cadastro extends JFrame implements ActionListener {
         framePrincipal.add(cadastroButton);
         framePrincipal.add(masculino);
         framePrincipal.add(feminino);
-        // framePrincipal.add(exitButton);
         framePrincipal.add(usuario);
         framePrincipal.add(senha);
         framePrincipal.add(senhaLabel);
@@ -219,7 +217,7 @@ public class Cadastro extends JFrame implements ActionListener {
         framePrincipal.add(bemVindo);
         framePrincipal.add(credenciais);
         framePrincipal.add(orderConttrl);
-        framePrincipal.add(painel);
+        // framePrincipal.add(painel);
         framePrincipal.add(adminJLabel);
         framePrincipal.add(adminCheck);
         framePrincipal.add(idadeLabel);

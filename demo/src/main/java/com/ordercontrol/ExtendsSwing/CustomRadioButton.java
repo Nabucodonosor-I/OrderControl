@@ -29,9 +29,10 @@ public class CustomRadioButton extends JRadioButton {
         
         if (isSelected()) {
             // Defini a cor desejada para o círculo selecionado
-            g2.setColor(Color);
+            g2.setColor(new Color(255,0,0));
             // Desenha o círculo preenchido
             g2.fillOval(x, y, diameter, diameter);
+            
         } else {
             // Defini uma cor para o estado não selecionado
             g2.setColor(Color);
