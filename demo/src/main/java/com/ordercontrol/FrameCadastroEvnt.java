@@ -1,17 +1,18 @@
 package com.ordercontrol;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 
 import javax.swing.*;
 
 import com.ordercontrol.ExtendsSwing.RoundedButton;
 import com.ordercontrol.ExtendsSwing.RoundedPanel;
 
-public class FrameCadastroEvnt extends JFrame implements ActionListener {
+public class FrameCadastroEvnt extends JFrame implements ActionListener, AdjustmentListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
@@ -67,6 +68,7 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener {
         labelAdd.setBounds(70, 15, 200, 100);
 
         scrollBar.setBounds(700, 120, 15, 450);
+        scrollBar.addAdjustmentListener(this);
 
         panelSuperior.setBounds(15, 15, 700, 100);
 
@@ -92,5 +94,11 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener {
 
 
         }
+    }
+
+    @Override
+    public void adjustmentValueChanged(AdjustmentEvent arg0) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'adjustmentValueChanged'");
     }
 }
