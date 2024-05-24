@@ -3,14 +3,16 @@ package Conexao.CRUD;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 
 import Conexao.ConnectionFactory;
+import Conexao.Usuario;
 
 public class Read {
-    public void lerUsuario() {
+    public ArrayList<Usuario> lerUsuarios() {
         // 1: Definir o comando SQL
-        String sql = "SELECT * FROM tb_cadastro WHERE codigo = ?";
+        ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
+        String sql = "SELECT * FROM tb_cadastro";
 
         // 2: Abrir uma conexão
         ConnectionFactory factory = new ConnectionFactory();
@@ -24,20 +26,17 @@ public class Read {
             ResultSet rs = ps.executeQuery();
             // 5: itera sobre o resultado
             while (rs.next()) {
-                int codigo = rs.getInt("codigo");
-                String nome = rs.getString("nome");
-                String fone = rs.getString("fone");
-                String email = rs.getString("email");
-                String aux = String.format(
-                        "Código: %d, Nome: %s, Fone: %s, Email: %s",
-                        codigo,
-                        nome,
-                        fone,
-                        email);
-
+                Usuario usuario = new Usuario();
+                usuario.setCpf(rs.getInt("cpf"));
+                
+                
+                listaUsuario.add(usuario);
             }
+            return listaUsuario;
         } catch (Exception e) {
             e.printStackTrace();
+
+            return null;
         }
     }
 }

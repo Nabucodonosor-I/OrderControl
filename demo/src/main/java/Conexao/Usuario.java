@@ -1,72 +1,80 @@
 package Conexao;
 
-public class Usuario {
-    private static int id;
-    private static String nome;
-    private static String senha;
-    private static String email;
-    private static String sexo;
-    private static int cpf;
-    private static int idade;
-    private static String admin;
+import java.util.ArrayList;
 
-    public static int getId() {
+public class Usuario {
+    ArrayList<Usuario> usuarioList = new ArrayList<>();
+    private  int id;
+    private  String nome;
+    private  String senha;
+    private  String email;
+    private  String sexo;
+    private  int cpf;
+    private  int idade;
+    private  String admin;
+    
+    public Usuario() {
+
+    }
+
+    public  int getId() {
         return id;
     }
 
-    public static String getNome() {
+    public  String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
-        Usuario.nome = nome;
+        this.nome = nome;
     }
 
-    public static String getSenha() {
+    public  String getSenha() {
         return senha;
     }
 
     public void setSenha(String senha) {
-        Usuario.senha = senha;
+        this.senha = senha;
     }
 
-    public static String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
-        Usuario.email = email;
+        this.email = email;
     }
 
-    public static String getSexo() {
+    public  String getSexo() {
         return sexo;
     }
 
     public void setSexo(String sexo) {
-        Usuario.sexo = sexo;
+        this.sexo = sexo;
     }
 
-    public static int getCpf() {
+    public  int getCpf() {
         return cpf;
     }
 
     public void setCpf(int cpf) {
-        Usuario.cpf = cpf;
+        this.cpf = cpf;
     }
 
-    public static int getIdade() {
+    public  int getIdade() {
         return idade;
     }
 
     public void setIdade(int idade) {
-        Usuario.idade = idade;
+        this.idade = idade;
     }
 
-    public static String getAdmin() {
+    public  String getAdmin() {
         return admin;
     }
 
     public void setAdmin(String admin) {
-        Usuario.admin = admin;
+        this.admin = admin;
     }
+
 }

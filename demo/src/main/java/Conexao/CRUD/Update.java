@@ -8,6 +8,7 @@ import Conexao.Usuario;
 
 public class Update {
     public void atualizarUsuario() {
+        Usuario usuario = new Usuario();
         // 1: Definir o comando SQL
         String sql = "UPDATE tb_cadastro SET nome = ?, senha = ?, email = ?, cpf = ?, sexo = ?, idade = ?, admin = ? WHERE codigo = ?";
         // 2: Abrir uma conexão
@@ -16,13 +17,13 @@ public class Update {
             // 3: Pré compila o comando
             PreparedStatement ps = c.prepareStatement(sql);
             // 4: Preenche os dados faltantes
-            ps.setString(1, Usuario.getNome());
-            ps.setString(2, Usuario.getSenha());
-            ps.setString(3, Usuario.getEmail());
-            ps.setInt(4, Usuario.getCpf());
-            ps.setString(5, Usuario.getSexo());
-            ps.setInt(6, Usuario.getIdade());
-            ps.setString(7, Usuario.getAdmin());
+            ps.setString(1, usuario.getNome());
+            ps.setString(2, usuario.getSenha());
+            ps.setString(3, usuario.getEmail());
+            ps.setInt(4, usuario.getCpf());
+            ps.setString(5, usuario.getSexo());
+            ps.setInt(6, usuario.getIdade());
+            ps.setString(7, usuario.getAdmin());
             // 5: Executa o comando
             ps.execute();
 
