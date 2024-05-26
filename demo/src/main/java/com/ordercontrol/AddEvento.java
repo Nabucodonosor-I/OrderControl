@@ -21,10 +21,10 @@ public class AddEvento extends JFrame implements ActionListener {
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     ImageIcon imageIcon1 = new ImageIcon(
             currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
-    ImageIcon imageIcon2 = new ImageIcon(
-            new ImageIcon(
-                    currentDirectory+"\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
-                    .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+    // ImageIcon imageIcon2 = new ImageIcon(
+    //         new ImageIcon(
+    //                 currentDirectory+"\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
+    //                 .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
 
     CustomRadioButton masculino = new CustomRadioButton(new Color(0, 0, 0));
     CustomRadioButton feminino = new CustomRadioButton(new Color(0, 0, 0));
@@ -65,7 +65,7 @@ public class AddEvento extends JFrame implements ActionListener {
         // painel.setBounds(15, 15, 350, 530);
 
         // config text field usuario
-        usuario.setBounds(470, 115, 200, 30);
+        usuario.setBounds(85, 115, 210, 30);
         usuario.setHorizontalAlignment(SwingConstants.CENTER);
         usuario.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
@@ -80,7 +80,7 @@ public class AddEvento extends JFrame implements ActionListener {
         cpf.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // config text field senha
-        senha.setBounds(470, 190, 200, 30);
+        senha.setBounds(85, 190, 210, 150);
         senha.setHorizontalAlignment(SwingConstants.CENTER);
         senha.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
@@ -90,16 +90,16 @@ public class AddEvento extends JFrame implements ActionListener {
         idade.setBorder(new BordaCantoArredondado(0, 0, 0, 2, 10));
 
         // configurações label senha
-        senhaLabel.setText("Data ");
+        senhaLabel.setText("Descrição ");
         senhaLabel.setForeground(new Color(0, 0, 0));
         senhaLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        senhaLabel.setBounds(470, 165, 125, 25);
+        senhaLabel.setBounds(85, 165, 125, 25);
 
         // configurações label nome
-        usuarioLabel.setText("Nome do evento ");
+        usuarioLabel.setText("Nome do cliente ");
         usuarioLabel.setForeground(new Color(0, 0, 0));
         usuarioLabel.setFont(new Font("Arial", Font.BOLD, 15));
-        usuarioLabel.setBounds(470, 80, 125, 25);
+        usuarioLabel.setBounds(85, 80, 125, 25);
 
         // config label email
         emailLabel.setText("Nome do cliente ");
@@ -133,9 +133,9 @@ public class AddEvento extends JFrame implements ActionListener {
 
         // config Label OrderControl
         orderConttrl.setText("OrderControl");
-        orderConttrl.setForeground(new Color(255, 255, 255));
+        orderConttrl.setForeground(new Color(0, 0, 0));
         orderConttrl.setFont(new Font("Bauhaus 93", Font.PLAIN, 30));
-        orderConttrl.setBounds(105, 240, 300, 40);
+        orderConttrl.setBounds(95, 45, 300, 40);
 
         // config Label feminino
         femininoLabel.setText("Orçamento ");
@@ -188,7 +188,7 @@ public class AddEvento extends JFrame implements ActionListener {
         principalLabel.setBounds(95, 55, 200, 200);
         principalLabel.setForeground(new Color(255, 0, 0));
         principalLabel.setFont(new Font("MV Boli", Font.BOLD, 25));
-        principalLabel.setIcon(imageIcon2);
+        // principalLabel.setIcon(imageIcon2);
         principalLabel.setHorizontalTextPosition(JLabel.CENTER);
         principalLabel.setVerticalTextPosition(JLabel.BOTTOM);
         principalLabel.setIconTextGap(-70);
@@ -214,8 +214,8 @@ public class AddEvento extends JFrame implements ActionListener {
         framePrincipal.add(cpfLabel);
         framePrincipal.add(femininoLabel);
         framePrincipal.add(masculinoLabel);
-        framePrincipal.add(bemVindo);
-        framePrincipal.add(credenciais);
+        // framePrincipal.add(bemVindo);
+        // framePrincipal.add(credenciais);
         framePrincipal.add(orderConttrl);
         // framePrincipal.add(painel);
         framePrincipal.add(adminJLabel);
@@ -267,8 +267,8 @@ public class AddEvento extends JFrame implements ActionListener {
         Object o = e.getSource();
 
         if (o == cadastroButton) {
-            framePrincipal.dispose();
-            TelaCadastroLogin tela = new TelaCadastroLogin();
+            // framePrincipal.dispose();
+            // TelaCadastroLogin tela = new TelaCadastroLogin();
         } else if (o == exitButton) {
             framePrincipal.dispose();
         }

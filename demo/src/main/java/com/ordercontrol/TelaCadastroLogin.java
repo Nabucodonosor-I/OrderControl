@@ -22,7 +22,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
 
     JFrame framePrincipal = new JFrame();
     RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54), null);
-    // RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
+    RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
     JButton exitButton = new JButton("x");
     JLabel principalLabel = new JLabel();
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
@@ -125,13 +125,13 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         loginButton.addActionListener(this);
 
         // configuração botão cadastro
-        // cadastroButton.setText("Cadastrar");
-        // cadastroButton.setBounds(470, 450, 200, 50);
-        // cadastroButton.setFocusable(false);
-        // cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
-        // cadastroButton.setForeground(new Color(255, 255, 255));
-        // cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        // cadastroButton.addActionListener(this);
+        cadastroButton.setText("Cadastrar");
+        cadastroButton.setBounds(470, 450, 200, 50);
+        cadastroButton.setFocusable(false);
+        cadastroButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 25));
+        cadastroButton.setForeground(new Color(255, 255, 255));
+        cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        cadastroButton.addActionListener(this);
 
         // onfiguração botão de saida
         exitButton.setBounds(705, 0, 45, 45);
@@ -156,7 +156,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         // adicionado
         framePrincipal.add(principalLabel);
         framePrincipal.add(loginButton);
-        // framePrincipal.add(exitButton);
+        framePrincipal.add(cadastroButton);
         framePrincipal.add(usuario);
         framePrincipal.add(senha);
         framePrincipal.add(senhaLabel);
@@ -218,6 +218,9 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
                 }
             }
         } else if (o == exitButton) {
+            framePrincipal.dispose();
+        } else if (o == cadastroButton) {
+            Cadastro cadastro = new Cadastro();
             framePrincipal.dispose();
         }
     }
