@@ -31,12 +31,12 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
     RoundedButton cadastrarButton = new RoundedButton(20, new Color(54, 54, 54), new Color(255, 255, 255));
     RoundedButton logout = new RoundedButton(20, new Color(54, 54, 54), new Color(255, 255, 255));
     JScrollBar scrollBar = new JScrollBar();
-    JPanel eventPanel = new JPanel();
+
 
     public FrameCadastroEvnt() {
         frame.setSize(750, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // frame.setResizable(false);
+        frame.setResizable(false);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(new Color(255, 255, 255));
@@ -77,17 +77,93 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
 
         panelSuperior.setBounds(15, 15, 700, 100);
 
-        frame.add(labelAdd);
-        frame.add(addButton);
-        frame.add(cadastroLabel);
-        frame.add(cadastrarButton);
-        frame.add(logoutLabel);
-        frame.add(logout);
-        frame.add(scrollBar);
-        frame.add(panelSuperior);
-        frame.setLayout(null);
+        Read read = new Read();
+        ArrayList<Evento> listaEventos = new ArrayList<>();
+        listaEventos = read.listarEventos();
+        ArrayList<JPanel> panels = new ArrayList<>();
+        ArrayList<JLabel> labels = new ArrayList<>();
 
-        mostrarEventos();
+        int x = 30;
+        int y = 150;
+        int panelWidth = 215;
+        int panelHeight = 200;
+        int spacing = 15;
+
+
+        for (Evento evento : listaEventos) {
+            JPanel eventoPanel = new JPanel();
+            eventoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            eventoPanel.setBackground(new Color(0, 0, 0));
+            eventoPanel.setLayout(null);    
+            eventoPanel.setBounds(x, y, panelWidth, panelHeight);
+
+            
+            JLabel nomeClienteLabel = new JLabel("Cliente: " + evento.getNomeCliente(), SwingConstants.CENTER);
+            nomeClienteLabel.setBackground(new Color(255, 255, 255));
+            nomeClienteLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
+            nomeClienteLabel.setBounds(x, y + 10, panelWidth, 20);
+            labels.add(nomeClienteLabel);
+
+            JLabel tipoEventoLabel = new JLabel("Tipo: " + evento.getTipoEventoToString(), SwingConstants.CENTER);
+            tipoEventoLabel.setBackground(new Color(255, 255, 255));
+            tipoEventoLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
+            tipoEventoLabel.setBounds(x, y + 30, panelWidth, 20);
+            labels.add(tipoEventoLabel);
+
+            JLabel localLabel = new JLabel("Local: " + evento.getLocal(), SwingConstants.CENTER);
+            localLabel.setBackground(new Color(255, 255, 255));
+            localLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
+            localLabel.setBounds(x, y + 50, panelWidth, 20);
+            labels.add(localLabel);
+
+            JLabel horaLabel = new JLabel("Hora: " + evento.getHora(), SwingConstants.CENTER);
+            horaLabel.setBackground(new Color(255, 255, 255));
+            horaLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
+            horaLabel.setBounds(x, y + 70, panelWidth, 20);
+            labels.add(horaLabel);
+
+            JLabel dataLabel = new JLabel("Data: " + evento.getData(), SwingConstants.CENTER);
+            dataLabel.setBackground(new Color(255, 255, 255));
+            dataLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
+            dataLabel.setBounds(x, y + 90, panelWidth, 20);
+            labels.add(dataLabel);
+
+            JLabel descricaoLabel = new JLabel("Descrição: " + evento.getData(), SwingConstants.CENTER);
+            descricaoLabel.setBackground(new Color(255, 255, 255));
+            descricaoLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
+            descricaoLabel.setBounds(x, y + 110, panelWidth, 20);
+            labels.add(descricaoLabel);
+            
+            panels.add(eventoPanel);
+            frame.add(nomeClienteLabel);
+            frame.add(tipoEventoLabel);
+            frame.add(localLabel);
+            frame.add(horaLabel);
+            frame.add(dataLabel);
+            frame.add(descricaoLabel);
+            frame.add(eventoPanel);
+            frame.revalidate();
+            frame.repaint();
+            
+            x += panelWidth + spacing;
+            if ((2 * 30) + (3 * spacing) + (3 * panelWidth) == 750) {
+                    x = 30;
+                    y += panelHeight + spacing;
+                }
+            }
+            
+            
+            frame.add(labelAdd);
+            frame.add(addButton);
+            frame.add(cadastroLabel);
+            frame.add(cadastrarButton);
+            frame.add(logoutLabel);
+            frame.add(logout);
+            frame.add(scrollBar);
+            frame.add(panelSuperior);
+            frame.setLayout(null);
+            
+            
     }
 
     @Override
@@ -106,49 +182,5 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
     public void adjustmentValueChanged(AdjustmentEvent arg0) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'adjustmentValueChanged'");
-    }
-
-    public void mostrarEventos() {
-        Read read = new Read();
-        ArrayList<Evento> listaEventos = read.listarEventos();
-
-        int x = 0;
-        int y = 0;
-        int panelWidth = 200;
-        int panelHeight = 100;
-        int spacing = 10;
-
-
-
-        for (Evento evento : listaEventos) {
-            JPanel eventoPanel = new JPanel();
-            eventoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            eventoPanel.setBackground(new Color(245, 245, 245));
-            eventoPanel.setLayout(null);
-            eventoPanel.setBounds(x, y, panelWidth, panelHeight);
-
-            JLabel nomeClienteLabel = new JLabel("Cliente: " + evento.getNomeCliente(), SwingConstants.CENTER);
-            nomeClienteLabel.setBounds(10, 10, panelWidth - 20, 20);
-            eventoPanel.add(nomeClienteLabel);
-
-            JLabel tipoEventoLabel = new JLabel("Tipo: " + evento.getTipoEvento(), SwingConstants.CENTER);
-            tipoEventoLabel.setBounds(10, 40, panelWidth - 20, 20);
-            eventoPanel.add(tipoEventoLabel);
-
-            JLabel localLabel = new JLabel("Local: " + evento.getLocal(), SwingConstants.CENTER);
-            localLabel.setBounds(10, 70, panelWidth - 20, 20);
-            eventoPanel.add(localLabel);
-
-            eventPanel.add(eventoPanel);
-
-            x += panelWidth + spacing;
-            if (x + panelWidth > eventPanel.getWidth()) {
-                x = 0;
-                y += panelHeight + spacing;
-            }
-        }
-
-        frame.revalidate();
-        frame.repaint();
     }
 }

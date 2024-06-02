@@ -40,15 +40,17 @@ public class Read {
     }
 
     public ArrayList<Evento> listarEventos() {
+        Connection conn = null;
         // 1: Definir o comando SQL
         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
         String sql = "SELECT * FROM tb_eventos";
 
         // 2: Abrir uma conexão
         ConnectionFactory factory = new ConnectionFactory();
-        try (Connection c = factory.obtemConexao()) {
+        try  {
+            conn = factory.obtemConexao();
             // 3: Pré compila o comando
-            PreparedStatement ps = c.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             
             // 4: Executa o comando e guarda
             // no resultado em um ResultSet
@@ -56,8 +58,12 @@ public class Read {
             // 5: itera sobre o resultado
             while (rs.next()) {
                 Evento evento = new Evento();
-
-                
+                evento.setTipoEvento(rs.getInt("tipoEvento"));
+                evento.setNomeCliente(rs.getString("nomeCliente"));
+                evento.setLocal(rs.getString("local"));
+                evento.setData(rs.getString("data"));
+                evento.setHora(rs.getString("hora"));
+                evento.setDescricao(rs.getString("descricao"));
                 listaEventos.add(evento);
             }
             return listaEventos;
@@ -65,6 +71,11 @@ public class Read {
             e.printStackTrace();
 
             return null;
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+            }
         }
     }
 }

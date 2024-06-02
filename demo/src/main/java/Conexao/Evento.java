@@ -21,9 +21,20 @@ public class Evento {
 
     public Evento() {
     }
-    
+
     public int getTipoEvento() {
         return tipoEvento;
+    }
+    
+    public String getTipoEventoToString() {
+        if(tipoEvento == 0) {
+            return "Ordem de Serviço" ;
+        } else if (tipoEvento == 1) {
+            return "Orçamento";
+        } else {
+            return "erro";
+        }
+        
     }
     public void setTipoEvento(int tipoEvento) {
         this.tipoEvento = tipoEvento;
