@@ -1,4 +1,4 @@
-package com.ordercontrol;
+package com.ordercontrol.Interface;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,18 +6,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import com.ordercontrol.ExtendsSwing.RoundedButton;
 import com.ordercontrol.ExtendsSwing.RoundedPanel;
 
+import Conexao.Evento;
+import Conexao.CRUD.Read;
+
 public class FrameCadastroEvnt extends JFrame implements ActionListener, AdjustmentListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
     ImageIcon imageIcon1 = new ImageIcon(
-        currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
+            currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
     JFrame frame = new JFrame();
     JLabel labelAdd = new JLabel();
     JLabel cadastroLabel = new JLabel();
@@ -27,6 +31,7 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
     RoundedButton cadastrarButton = new RoundedButton(20, new Color(54, 54, 54), new Color(255, 255, 255));
     RoundedButton logout = new RoundedButton(20, new Color(54, 54, 54), new Color(255, 255, 255));
     JScrollBar scrollBar = new JScrollBar();
+    JPanel eventPanel = new JPanel();
 
     public FrameCadastroEvnt() {
         frame.setSize(750, 600);
@@ -81,6 +86,8 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
         frame.add(scrollBar);
         frame.add(panelSuperior);
         frame.setLayout(null);
+
+        mostrarEventos();
     }
 
     @Override
@@ -89,9 +96,8 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
 
         if (o == cadastrarButton) {
             Cadastro cadastro = new Cadastro();
-        } else if(o == addButton) {
+        } else if (o == addButton) {
             AddEvento newEvento = new AddEvento();
-
 
         }
     }
@@ -100,5 +106,49 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
     public void adjustmentValueChanged(AdjustmentEvent arg0) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'adjustmentValueChanged'");
+    }
+
+    public void mostrarEventos() {
+        Read read = new Read();
+        ArrayList<Evento> listaEventos = read.listarEventos();
+
+        int x = 0;
+        int y = 0;
+        int panelWidth = 200;
+        int panelHeight = 100;
+        int spacing = 10;
+
+
+
+        for (Evento evento : listaEventos) {
+            JPanel eventoPanel = new JPanel();
+            eventoPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            eventoPanel.setBackground(new Color(245, 245, 245));
+            eventoPanel.setLayout(null);
+            eventoPanel.setBounds(x, y, panelWidth, panelHeight);
+
+            JLabel nomeClienteLabel = new JLabel("Cliente: " + evento.getNomeCliente(), SwingConstants.CENTER);
+            nomeClienteLabel.setBounds(10, 10, panelWidth - 20, 20);
+            eventoPanel.add(nomeClienteLabel);
+
+            JLabel tipoEventoLabel = new JLabel("Tipo: " + evento.getTipoEvento(), SwingConstants.CENTER);
+            tipoEventoLabel.setBounds(10, 40, panelWidth - 20, 20);
+            eventoPanel.add(tipoEventoLabel);
+
+            JLabel localLabel = new JLabel("Local: " + evento.getLocal(), SwingConstants.CENTER);
+            localLabel.setBounds(10, 70, panelWidth - 20, 20);
+            eventoPanel.add(localLabel);
+
+            eventPanel.add(eventoPanel);
+
+            x += panelWidth + spacing;
+            if (x + panelWidth > eventPanel.getWidth()) {
+                x = 0;
+                y += panelHeight + spacing;
+            }
+        }
+
+        frame.revalidate();
+        frame.repaint();
     }
 }

@@ -1,5 +1,7 @@
 package com.ordercontrol;
 
+import com.ordercontrol.Interface.TelaCadastroLogin;
+
 import Conexao.ConnectionFactory;
 import Conexao.CRUD.ValidarUsuario;
 

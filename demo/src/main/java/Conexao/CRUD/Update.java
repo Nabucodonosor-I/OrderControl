@@ -23,7 +23,7 @@ public class Update {
             ps.setInt(4, usuario.getCpf());
             ps.setString(5, usuario.getSexo());
             ps.setInt(6, usuario.getIdade());
-            ps.setString(7, usuario.getAdmin());
+            ps.setInt(7, usuario.getAdmin());
             // 5: Executa o comando
             ps.execute();
 

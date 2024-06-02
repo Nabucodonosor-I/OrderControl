@@ -13,10 +13,10 @@ CREATE TABLE IF NOT EXISTS tb_cadastro(
 
 CREATE TABLE if NOT EXISTS tb_eventos(
     id int PRIMARY KEY auto_increment,
-    tipoEvento int,
-    nomeCliente VARCHAR(200),
-    local VARCHAR(200),
-    data int,
-    hora int,
-    descricao TEXT
+    tipoEvento int NOT NULL,
+    nomeCliente VARCHAR(200) NOT NULL,
+    local VARCHAR(200) NOT NULL,
+    data VARCHAR(200) NOT NULL,
+    hora VARCHAR(200) NOT NULL,
+    descricao TEXT NOT NULL
 );

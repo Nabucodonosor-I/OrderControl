@@ -1,4 +1,4 @@
-package com.ordercontrol;
+package com.ordercontrol.Interface;
 
 import com.ordercontrol.ExtendsSwing.*;
 
@@ -80,7 +80,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         senhaLabel.setBounds(470, 250, 125, 25);
 
         // configurações label usuario
-        usuarioLabel.setText("Usuario ");
+        usuarioLabel.setText("E-mail ");
         usuarioLabel.setForeground(new Color(0, 0, 0));
         usuarioLabel.setFont(new Font("Arial", Font.BOLD, 15));
         usuarioLabel.setBounds(470, 175, 125, 25);

@@ -1,9 +1,7 @@
 package Conexao;
 
-import java.util.ArrayList;
 
 public class Usuario {
-    ArrayList<Usuario> usuarioList = new ArrayList<>();
     private  int id;
     private  String nome;
     private  String senha;
@@ -11,11 +9,23 @@ public class Usuario {
     private  String sexo;
     private  int cpf;
     private  int idade;
-    private  String admin;
+    private  int admin;
     
     public Usuario() {
 
     }
+    
+
+    public Usuario(String nome, String senha, String email, String sexo, int cpf, int idade) {
+        this.nome = nome;
+        this.senha = senha;
+        this.email = email;
+        this.sexo = sexo;
+        this.cpf = cpf;
+        this.idade = idade;
+        this.admin = 0;
+    }
+
 
     public  int getId() {
         return id;
@@ -69,11 +79,11 @@ public class Usuario {
         this.idade = idade;
     }
 
-    public  String getAdmin() {
+    public  int getAdmin() {
         return admin;
     }
 
-    public void setAdmin(String admin) {
+    public void setAdmin(int admin) {
         this.admin = admin;
     }
 
