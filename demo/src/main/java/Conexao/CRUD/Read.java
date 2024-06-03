@@ -10,10 +10,9 @@ import Conexao.Evento;
 import Conexao.Usuario;
 
 public class Read {
-    public ArrayList<Usuario> lerUsuarios() {
+    public void lerUsuarios() {
         // 1: Definir o comando SQL
-        ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
-        String sql = "SELECT * FROM tb_cadastro";
+        String sql = "SELECT * FROM tb_cadastro ";
 
         // 2: Abrir uma conexão
         ConnectionFactory factory = new ConnectionFactory();
@@ -29,13 +28,10 @@ public class Read {
                 Usuario usuario = new Usuario();
                 usuario.setCpf(rs.getInt("cpf"));
                 
-                listaUsuario.add(usuario);
             }
-            return listaUsuario;
+
         } catch (Exception e) {
             e.printStackTrace();
-
-            return null;
         }
     }
 

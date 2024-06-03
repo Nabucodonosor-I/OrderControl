@@ -17,7 +17,7 @@ import com.ordercontrol.ExtendsSwing.RoundedPanel;
 import Conexao.Evento;
 import Conexao.CRUD.Read;
 
-public class FrameCadastroEvnt extends JFrame implements ActionListener, AdjustmentListener {
+public class VisualComum extends JFrame implements ActionListener, AdjustmentListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
@@ -36,7 +36,7 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
     RoundedButton logout = new RoundedButton(20, new Color(54, 54, 54), null);
     JScrollBar scrollBar = new JScrollBar();
 
-    public FrameCadastroEvnt() {
+    public VisualComum() {
         frame.setSize(750, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -163,7 +163,7 @@ public class FrameCadastroEvnt extends JFrame implements ActionListener, Adjustm
 
         frame.add(principalLabel);
         frame.add(orderConttrl);
-        frame.add(addButton);
+        // frame.add(addButton);
         frame.add(logout);
         frame.add(scrollBar);
         frame.add(panel2);

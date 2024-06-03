@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import Conexao.ConnectionFactory;
+import Conexao.Usuario;
 
 public class ValidarUsuario {
     
@@ -12,7 +13,7 @@ public class ValidarUsuario {
         int idUsuarioValido = 0;
 
         // 1: Definir o comando SQL
-        String sql = "SELECT id FROM tb_cadastro WHERE email = ? and senha = ?";
+        String sql = "SELECT * FROM tb_cadastro WHERE email = ? and senha = ?";
         
         // 2: Abrir uma conexão
         ConnectionFactory factory = new ConnectionFactory();
@@ -27,6 +28,15 @@ public class ValidarUsuario {
             
             if (rs.next()) {
                 idUsuarioValido = rs.getInt("id");
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setCpf(rs.getInt("cpf"));
+                usuario.setSexo(rs.getString("sexo"));
+                usuario.setIdade(rs.getInt("idade"));
+                usuario.setAdmin(rs.getInt("admin"));
             }
             
         } catch (Exception e) {

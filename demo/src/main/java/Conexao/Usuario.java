@@ -1,20 +1,18 @@
 package Conexao;
 
-
 public class Usuario {
-    private  int id;
-    private  String nome;
-    private  String senha;
-    private  String email;
-    private  String sexo;
-    private  int cpf;
-    private  int idade;
-    private  int admin;
-    
+    private int id;
+    private String nome;
+    private String senha;
+    private String email;
+    private String sexo;
+    private int cpf;
+    private int idade;
+    private int admin;
+
     public Usuario() {
 
     }
-    
 
     public Usuario(String nome, String senha, String email, String sexo, int cpf, int idade) {
         this.nome = nome;
@@ -23,15 +21,17 @@ public class Usuario {
         this.sexo = sexo;
         this.cpf = cpf;
         this.idade = idade;
-        this.admin = 0;
     }
 
-
-    public  int getId() {
+    public int getId() {
         return id;
     }
 
-    public  String getNome() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNome() {
         return nome;
     }
 
@@ -39,7 +39,7 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public  String getSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -47,7 +47,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public  String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -55,7 +55,7 @@ public class Usuario {
         this.email = email;
     }
 
-    public  String getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
@@ -63,7 +63,7 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public  int getCpf() {
+    public int getCpf() {
         return cpf;
     }
 
@@ -71,7 +71,7 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public  int getIdade() {
+    public int getIdade() {
         return idade;
     }
 
@@ -79,7 +79,8 @@ public class Usuario {
         this.idade = idade;
     }
 
-    public  int getAdmin() {
+    public int getAdmin() {
+        System.out.println(admin);
         return admin;
     }
 

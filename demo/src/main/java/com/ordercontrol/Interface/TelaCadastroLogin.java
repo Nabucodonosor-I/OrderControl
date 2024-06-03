@@ -2,6 +2,7 @@ package com.ordercontrol.Interface;
 
 import com.ordercontrol.ExtendsSwing.*;
 
+import Conexao.Usuario;
 import Conexao.CRUD.ValidarUsuario;
 
 import javax.swing.*;
@@ -204,8 +205,16 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
                 int idUsuario = validar.lerUsuario(usuarioText, senhaChars);
 
                 if (idUsuario != 0) {
-                    framePrincipal.dispose();              
-                    FrameCadastroEvnt frame = new FrameCadastroEvnt();      
+                    Usuario usuario = new Usuario();
+                    System.err.println(usuario.getAdmin());
+                    if (usuario.getAdmin() == 1) {
+                        framePrincipal.dispose();
+                        VisualAdmin frame = new VisualAdmin();
+                    } else if(usuario.getAdmin() == 0) {
+                        framePrincipal.dispose();
+                        VisualComum frame = new VisualComum();
+                    }
+
                 } else {
                     JLabel erro = new JLabel();
                     erro.setText("Usuarios ou senha invalidos");
