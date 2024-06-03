@@ -235,7 +235,7 @@ public class AddEvento extends JFrame implements ActionListener {
             Create cadastrar = new Create();
             boolean criarEvento = cadastrar.criarEvento(evento);
             if (criarEvento = true) {
-                JOptionPane.showMessageDialog(null, "Usuario cadastrado");
+                JOptionPane.showMessageDialog(null, "Evento cadastrado");
                 framePrincipal.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadsrar usuario");

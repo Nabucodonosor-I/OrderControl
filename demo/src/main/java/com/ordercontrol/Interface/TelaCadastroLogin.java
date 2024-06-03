@@ -145,7 +145,6 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         // configurações label
         principalLabel.setBounds(95, 35, 200, 200);
         principalLabel.setForeground(new Color(255, 0, 0));
-        principalLabel.setFont(new Font("MV Boli", Font.BOLD, 25));
         principalLabel.setIcon(imageIcon2);
         principalLabel.setHorizontalTextPosition(JLabel.CENTER);
         principalLabel.setVerticalTextPosition(JLabel.BOTTOM);
