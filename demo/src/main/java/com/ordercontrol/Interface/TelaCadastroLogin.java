@@ -202,11 +202,9 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
 
             } else {
 
-                int idUsuario = validar.lerUsuario(usuarioText, senhaChars);
+                Usuario usuario = validar.lerUsuario(usuarioText, senhaChars);
 
-                if (idUsuario != 0) {
-                    Usuario usuario = new Usuario();
-                    System.err.println(usuario.getAdmin());
+                if (usuario != null) {
                     if (usuario.getAdmin() == 1) {
                         framePrincipal.dispose();
                         VisualAdmin frame = new VisualAdmin();

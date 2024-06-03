@@ -8,9 +8,11 @@ import Conexao.ConnectionFactory;
 import Conexao.Usuario;
 
 public class ValidarUsuario {
+    int adimin = 0;
     
-    public int lerUsuario(String digtUsuario, String digtSenha) {
-        int idUsuarioValido = 0;
+    public Usuario lerUsuario(String digtUsuario, String digtSenha) {
+        Usuario usuario = null;
+        
 
         // 1: Definir o comando SQL
         String sql = "SELECT * FROM tb_cadastro WHERE email = ? and senha = ?";
@@ -27,8 +29,7 @@ public class ValidarUsuario {
             ResultSet rs = ps.executeQuery();   
             
             if (rs.next()) {
-                idUsuarioValido = rs.getInt("id");
-                Usuario usuario = new Usuario();
+                usuario = new Usuario();
                 usuario.setId(rs.getInt("id"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setSenha(rs.getString("senha"));
@@ -42,6 +43,6 @@ public class ValidarUsuario {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return idUsuarioValido;
+        return usuario;
     }
 }
