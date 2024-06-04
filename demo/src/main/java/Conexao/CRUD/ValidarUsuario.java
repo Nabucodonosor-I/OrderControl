@@ -8,7 +8,6 @@ import Conexao.ConnectionFactory;
 import Conexao.Usuario;
 
 public class ValidarUsuario {
-    int adimin = 0;
     
     public Usuario lerUsuario(String digtUsuario, String digtSenha) {
         Usuario usuario = null;

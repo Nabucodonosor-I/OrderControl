@@ -80,7 +80,6 @@ public class Usuario {
     }
 
     public int getAdmin() {
-        System.out.println(admin);
         return admin;
     }
 

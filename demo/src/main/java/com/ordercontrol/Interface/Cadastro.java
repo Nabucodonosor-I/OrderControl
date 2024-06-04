@@ -200,8 +200,6 @@ public class Cadastro extends JFrame implements ActionListener {
         framePrincipal.add(credenciais);
         framePrincipal.add(orderConttrl);
         framePrincipal.add(painel);
-        // framePrincipal.add(adminJLabel);
-        // framePrincipal.add(adminCheck);
         framePrincipal.add(idadeLabel);
         framePrincipal.add(idade);
         framePrincipal.setLayout(null);
