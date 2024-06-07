@@ -5,7 +5,9 @@ import javax.swing.*;
 import com.ordercontrol.ExtendsSwing.*;
 
 import Conexao.Evento;
+import Conexao.Usuario;
 import Conexao.CRUD.Create;
+import Conexao.CRUD.ValidarUsuario;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -13,9 +15,13 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
+
 public class AddEvento extends JFrame implements ActionListener {
 
     String currentDirectory = System.getProperty("user.dir");
+    
+    ValidarUsuario validar = new ValidarUsuario();
 
     JFrame framePrincipal = new JFrame();
     RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
@@ -236,6 +242,8 @@ public class AddEvento extends JFrame implements ActionListener {
             boolean criarEvento = cadastrar.criarEvento(evento);
             if (criarEvento = true) {
                 JOptionPane.showMessageDialog(null, "Evento cadastrado");
+                // VisualAdmin visualAdmin = visualAdmin.criarEvento();
+                
                 framePrincipal.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadsrar usuario");

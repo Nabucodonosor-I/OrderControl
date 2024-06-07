@@ -10,7 +10,7 @@ public class Usuario {
     private int idade;
     private int admin;
 
-    public Usuario() {
+    public  Usuario() {
 
     }
 
