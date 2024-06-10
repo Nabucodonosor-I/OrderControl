@@ -1,4 +1,4 @@
-package Conexao;
+package com.ordercontrol.model;
 
 public class Evento {
     private int id;

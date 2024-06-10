@@ -1,11 +1,12 @@
-package Conexao.CRUD;
+package com.ordercontrol.DAO.CRUD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import Conexao.ConnectionFactory;
-import Conexao.Usuario;
+import com.ordercontrol.DAO.ConnectionFactory;
+import com.ordercontrol.model.*;
+
 
 public class ValidarUsuario {
     

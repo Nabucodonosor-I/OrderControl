@@ -1,4 +1,4 @@
-package com.ordercontrol.Interface;
+package com.ordercontrol.ui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,21 +11,19 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import com.ordercontrol.ExtendsSwing.RoundedButton;
-import com.ordercontrol.ExtendsSwing.RoundedPanel;
-
-import Conexao.Evento;
-import Conexao.CRUD.Read;
+import com.ordercontrol.DAO.CRUD.*;
+import com.ordercontrol.componentes.*;
+import com.ordercontrol.model.*;
 
 public class VisualAdmin extends JFrame implements ActionListener, AdjustmentListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
     ImageIcon imageIcon1 = new ImageIcon(
-            currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
+            currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon(
-                    currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
+                    currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
                     .getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH));
     JFrame frame = new JFrame();
     JLabel principalLabel = new JLabel();

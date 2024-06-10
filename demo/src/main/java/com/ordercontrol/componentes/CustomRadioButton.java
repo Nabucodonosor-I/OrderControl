@@ -1,4 +1,4 @@
-package com.ordercontrol.ExtendsSwing;
+package com.ordercontrol.componentes;
 
 import javax.swing.*;
 import java.awt.*;

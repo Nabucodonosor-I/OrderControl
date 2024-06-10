@@ -1,9 +1,8 @@
-package com.ordercontrol.Interface;
+package com.ordercontrol.ui;
 
-import com.ordercontrol.ExtendsSwing.*;
-
-import Conexao.Usuario;
-import Conexao.CRUD.ValidarUsuario;
+import com.ordercontrol.DAO.CRUD.*;
+import com.ordercontrol.componentes.*;
+import com.ordercontrol.model.*;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -28,10 +27,10 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     JLabel principalLabel = new JLabel();
     RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     ImageIcon imageIcon1 = new ImageIcon(
-            currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
+            currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon(
-                    currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\Logo.png")
+                    currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
                     .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
     // Border border = BorderFactory.createLineBorder(Color.RED,1);
 

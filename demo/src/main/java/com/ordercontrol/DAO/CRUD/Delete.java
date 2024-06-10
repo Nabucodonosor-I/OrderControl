@@ -1,11 +1,11 @@
-package Conexao.CRUD;
+package com.ordercontrol.DAO.CRUD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import Conexao.ConnectionFactory;
-import Conexao.Evento;
-import Conexao.Usuario;
+import com.ordercontrol.DAO.ConnectionFactory;
+import com.ordercontrol.model.*;
+
 
 public class Delete {
     Usuario usuario = new Usuario();

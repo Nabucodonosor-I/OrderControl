@@ -1,4 +1,4 @@
-package com.ordercontrol.ExtendsSwing;
+package com.ordercontrol.componentes;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

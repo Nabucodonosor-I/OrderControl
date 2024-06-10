@@ -1,10 +1,11 @@
-package Conexao.CRUD;
+package com.ordercontrol.DAO.CRUD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import Conexao.ConnectionFactory;
-import Conexao.*;
+import com.ordercontrol.DAO.ConnectionFactory;
+import com.ordercontrol.model.*;
+
 
 public class Create {
     public boolean criarUsuario(Usuario usuario) {

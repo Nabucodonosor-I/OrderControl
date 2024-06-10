@@ -1,13 +1,10 @@
-package com.ordercontrol.Interface;
+package com.ordercontrol.ui;
 
 import javax.swing.*;
 
-import com.ordercontrol.ExtendsSwing.*;
-
-import Conexao.Evento;
-import Conexao.Usuario;
-import Conexao.CRUD.Create;
-import Conexao.CRUD.ValidarUsuario;
+import com.ordercontrol.DAO.CRUD.*;
+import com.ordercontrol.componentes.*;
+import com.ordercontrol.model.*;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -28,7 +25,7 @@ public class AddEvento extends JFrame implements ActionListener {
     JButton exitButton = new JButton("x");
     JLabel principalLabel = new JLabel();
     ImageIcon imageIcon1 = new ImageIcon(
-            currentDirectory + "\\demo\\src\\main\\java\\com\\ordercontrol\\Imagens\\68386.png");
+            currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
     CustomRadioButton ordemServ = new CustomRadioButton(new Color(0, 0, 0));
     CustomRadioButton orcam = new CustomRadioButton(new Color(0, 0, 0));
     ButtonGroup group = new ButtonGroup();

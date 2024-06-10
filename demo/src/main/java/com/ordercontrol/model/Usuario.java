@@ -1,4 +1,4 @@
-package Conexao;
+package com.ordercontrol.model;
 
 public class Usuario {
     private int id;

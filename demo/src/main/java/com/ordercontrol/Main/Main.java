@@ -1,11 +1,13 @@
-package com.ordercontrol;
+package com.ordercontrol.Main;
 
 import javax.swing.SwingUtilities;
 
-import com.ordercontrol.Interface.TelaCadastroLogin;
+import com.ordercontrol.DAO.ConnectionFactory;
+import com.ordercontrol.DAO.CRUD.ValidarUsuario;
+import com.ordercontrol.ui.TelaCadastroLogin;
 
-import Conexao.ConnectionFactory;
-import Conexao.CRUD.ValidarUsuario;
+
+
 
 public class Main {
     public static void main(String[] args) {   
