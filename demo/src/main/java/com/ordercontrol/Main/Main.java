@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 
 import com.ordercontrol.DAO.ConnectionFactory;
 import com.ordercontrol.DAO.CRUD.ValidarUsuario;
-import com.ordercontrol.ui.TelaCadastroLogin;
+import com.ordercontrol.ui.TelaPrincipal;
 
 
 
@@ -14,7 +14,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {    
 
         // Invoando construtores
-        TelaCadastroLogin sp = new TelaCadastroLogin();
+        TelaPrincipal sp = new TelaPrincipal();
         ConnectionFactory cn = new ConnectionFactory();
         ValidarUsuario vu = new ValidarUsuario();
 

@@ -3,6 +3,8 @@ package com.ordercontrol.ui;
 import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
+import com.ordercontrol.ui.administrador.TelaAdmin;
+import com.ordercontrol.ui.comum.TelaComum;
 
 import javax.swing.*;
 import java.awt.Color;
@@ -11,7 +13,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaCadastroLogin extends JFrame implements ActionListener {
+public class TelaPrincipal extends JFrame implements ActionListener {
 
     String senhaUser;
     String usuarioUser;
@@ -46,7 +48,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
     JLabel descricao1 = new JLabel();
     JLabel descricao2 = new JLabel();
 
-    public TelaCadastroLogin() {
+    public TelaPrincipal() {
 
         // configurações frame
         framePrincipal.setSize(750, 600);
@@ -208,10 +210,10 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
                 if (usuario != null) {
                     if (usuario.getAdmin() == 1) {
                         framePrincipal.dispose();
-                        VisualAdmin frame = new VisualAdmin();
+                        TelaAdmin frame = new TelaAdmin();
                     } else if(usuario.getAdmin() == 0) {
                         framePrincipal.dispose();
-                        VisualComum frame = new VisualComum();
+                        TelaComum frame = new TelaComum();
                     }
 
                 } else {
@@ -227,7 +229,7 @@ public class TelaCadastroLogin extends JFrame implements ActionListener {
         } else if (o == exitButton) {
             framePrincipal.dispose();
         } else if (o == cadastroButton) {
-            Cadastro cadastro = new Cadastro();
+            TelaCadastro cadastro = new TelaCadastro();
             framePrincipal.dispose();
         }
     }

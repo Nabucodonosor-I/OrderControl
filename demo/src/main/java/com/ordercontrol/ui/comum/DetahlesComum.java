@@ -1,4 +1,4 @@
-package com.ordercontrol.ui;
+package com.ordercontrol.ui.comum;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,7 +14,7 @@ import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
 
-public class FrameDetahles implements ActionListener {
+public class DetahlesComum implements ActionListener {
 
     JFrame framePrincipal = new JFrame();
     String currentDirectory = System.getProperty("user.dir");
@@ -31,9 +31,9 @@ public class FrameDetahles implements ActionListener {
     RoundedPanel painel = new RoundedPanel(10, new Color(28, 35, 43));
     RoundedButton deletar = new RoundedButton(10, new Color(54, 54, 54), null);
 
-    VisualAdmin visualAdmin = null;
+    TelaComum visualComum = null;
 
-    FrameDetahles(Evento evento) {
+    DetahlesComum(Evento evento) {
         // configurações frame
         framePrincipal.setSize(300, 400);
         framePrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -86,8 +86,8 @@ public class FrameDetahles implements ActionListener {
                 System.out.println(id);
                 Delete deletar = new Delete();
                 deletar.deletarEvento(id);
-                visualAdmin.frameDispose();
-                VisualAdmin v = new VisualAdmin();
+                visualComum.frameDispose();
+                TelaComum v = new TelaComum();
                 framePrincipal.dispose();
             }
         });
@@ -104,8 +104,8 @@ public class FrameDetahles implements ActionListener {
 
     }
 
-    public void setVisualAdimin(VisualAdmin visualAdmin) {
-        this.visualAdmin = visualAdmin;
+    public void setVisualComum(TelaComum visualComum) {
+        this.visualComum = visualComum;
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Cadastro extends JFrame implements ActionListener {
+public class TelaCadastro extends JFrame implements ActionListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
@@ -49,7 +49,7 @@ public class Cadastro extends JFrame implements ActionListener {
     JLabel femininoLabel = new JLabel();
     JLabel idadeLabel = new JLabel();
 
-    public Cadastro() {
+    public TelaCadastro() {
         // configurações frame
         framePrincipal.setSize(750, 600);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

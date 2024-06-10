@@ -1,4 +1,4 @@
-package com.ordercontrol.ui;
+package com.ordercontrol.ui.comum;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,7 +15,7 @@ import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
 
-public class VisualAdmin extends JFrame implements ActionListener, AdjustmentListener {
+public class TelaComum extends JFrame implements ActionListener, AdjustmentListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
@@ -30,19 +30,16 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
     JLabel orderConttrl = new JLabel();
     RoundedPanel panel1 = new RoundedPanel(10, new Color(28, 35, 43));
     RoundedPanel panel2 = new RoundedPanel(10, new Color(255, 255, 255));
-    RoundedButton addButton = new RoundedButton(20, new Color(54, 54, 54), null);
     RoundedButton logout = new RoundedButton(20, new Color(54, 54, 54), null);
     JScrollBar scrollBar = new JScrollBar();
     RoundedPanel painelBranco = new RoundedPanel(5, new Color(255, 255, 255));
-
-
 
     ArrayList<RoundedPanel> panels = new ArrayList<>();
     ArrayList<Integer> originalYPositions = new ArrayList<>();
     ArrayList<Evento> listaEventos = new ArrayList<>();
     ArrayList<JLabel> labels = new ArrayList<>();
 
-    public VisualAdmin() {
+    public TelaComum() {
         frame.setSize(750, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -67,14 +64,6 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
         orderConttrl.setFont(new Font("Bauhaus 93", Font.PLAIN, 23));
         orderConttrl.setBounds(135, 50, 300, 40);
 
-        addButton.setText("Novo Evento");
-        addButton.setFocusable(false);
-        addButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 18));
-        addButton.setForeground(new Color(255, 255, 255));
-        addButton.setBounds(340, 35, 140, 70);
-        addButton.setBorder(BorderFactory.createRaisedBevelBorder());
-        addButton.addActionListener(this);
-
         logout.setText("sair");
         logout.setFocusable(false);
         logout.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 19));
@@ -97,7 +86,6 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
 
         frame.add(principalLabel);
         frame.add(orderConttrl);
-        frame.add(addButton);
         frame.add(logout);
         frame.add(scrollBar);
         frame.add(panel2);
@@ -207,17 +195,15 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
     public void actionPerformed(ActionEvent arg0) {
         Object o = arg0.getSource();
 
-        if (o == addButton) {
-            AddEvento newEvento = new AddEvento();
-        } else if (o instanceof RoundedButton) {
+        if (o instanceof RoundedButton) {
             RoundedButton button = (RoundedButton) o;
             if (button.getActionCommand().startsWith("detalhes_")) {
                 String indexString = button.getActionCommand().substring(9);
                 int eventoIndex = Integer.parseInt(indexString);
                 Evento evento = listaEventos.get(eventoIndex - 1);
                 if (evento != null) {
-                    FrameDetahles frameDetahles =new FrameDetahles(evento);
-                    frameDetahles.setVisualAdimin(this);
+                    DetahlesComum frameDetahles = new DetahlesComum(evento);
+                    frameDetahles.setVisualComum(this);
                 }
             }
         }

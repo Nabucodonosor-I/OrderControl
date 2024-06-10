@@ -1,4 +1,4 @@
-package com.ordercontrol.ui;
+package com.ordercontrol.ui.administrador;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,7 +15,7 @@ import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
 
-public class VisualComum extends JFrame implements ActionListener, AdjustmentListener {
+public class TelaAdmin extends JFrame implements ActionListener, AdjustmentListener {
 
     String currentDirectory = System.getProperty("user.dir");
 
@@ -23,7 +23,7 @@ public class VisualComum extends JFrame implements ActionListener, AdjustmentLis
             currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
     ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon(
-                    currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\.png")
+                    currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
                     .getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH));
     JFrame frame = new JFrame();
     JLabel principalLabel = new JLabel();
@@ -33,8 +33,16 @@ public class VisualComum extends JFrame implements ActionListener, AdjustmentLis
     RoundedButton addButton = new RoundedButton(20, new Color(54, 54, 54), null);
     RoundedButton logout = new RoundedButton(20, new Color(54, 54, 54), null);
     JScrollBar scrollBar = new JScrollBar();
+    RoundedPanel painelBranco = new RoundedPanel(5, new Color(255, 255, 255));
 
-    public VisualComum() {
+
+
+    ArrayList<RoundedPanel> panels = new ArrayList<>();
+    ArrayList<Integer> originalYPositions = new ArrayList<>();
+    ArrayList<Evento> listaEventos = new ArrayList<>();
+    ArrayList<JLabel> labels = new ArrayList<>();
+
+    public TelaAdmin() {
         frame.setSize(750, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -44,7 +52,7 @@ public class VisualComum extends JFrame implements ActionListener, AdjustmentLis
         frame.setIconImage(imageIcon1.getImage());
         frame.setLayout(null);
 
-        // configurações label
+        // Configurações label
         principalLabel.setBounds(25, 25, 90, 90);
         principalLabel.setForeground(new Color(255, 0, 0));
         principalLabel.setIcon(imageIcon2);
@@ -59,7 +67,6 @@ public class VisualComum extends JFrame implements ActionListener, AdjustmentLis
         orderConttrl.setFont(new Font("Bauhaus 93", Font.PLAIN, 23));
         orderConttrl.setBounds(135, 50, 300, 40);
 
-        // addButton.setEspessuraLinha(2.0f);
         addButton.setText("Novo Evento");
         addButton.setFocusable(false);
         addButton.setFont(new Font("DejaVu Sans Mono", Font.PLAIN, 18));
@@ -79,78 +86,110 @@ public class VisualComum extends JFrame implements ActionListener, AdjustmentLis
         scrollBar.setBounds(717, 130, 15, 425);
         scrollBar.setForeground(new Color(54, 54, 54));
         scrollBar.setBackground(new Color(28, 35, 43));
-        scrollBar.setOpaque(true);
+        scrollBar.setMinimum(0);
+        scrollBar.setMaximum(1000);
         scrollBar.addAdjustmentListener(this);
 
         panel1.setBounds(15, 15, 695, 110);
         panel2.setBounds(20, 20, 685, 100);
 
-        Read read = new Read();
-        ArrayList<Evento> listaEventos = new ArrayList<>();
-        listaEventos = read.listarEventos();
-        ArrayList<JPanel> panels = new ArrayList<>();
-        ArrayList<JLabel> labels = new ArrayList<>();
+        painelBranco.setBounds(0, 0, 750, 150);
 
+        frame.add(principalLabel);
+        frame.add(orderConttrl);
+        frame.add(addButton);
+        frame.add(logout);
+        frame.add(scrollBar);
+        frame.add(panel2);
+        frame.add(panel1);
+        frame.add(painelBranco);
+
+        mostrarEventos();
+        frame.setLayout(null);
+    }
+
+    public void mostrarEventos() {
         int x = 30;
         int y = 150;
         int panelWidth = 215;
         int panelHeight = 195;
         int spacing = 15;
         int acumulador = 0;
+        int acumuladorID = 1;
+
+        for (RoundedPanel panel : panels) {
+            frame.remove(panel);
+        }
+        panels.clear();
+        originalYPositions.clear();
+        labels.clear();
+
+        Read read = new Read();
+        listaEventos = read.listarEventos();
 
         for (Evento evento : listaEventos) {
-            RoundedPanel eventoPanel = new RoundedPanel(15, new Color(28, 35, 43));
+            RoundedPanel eventoPanel = new RoundedPanel(10, new Color(28, 35, 43));
             eventoPanel.setLayout(null);
             eventoPanel.setBounds(x, y, panelWidth, panelHeight);
 
-            JLabel nomeClienteLabel = new JLabel("Cliente: " + evento.getNomeCliente(), SwingConstants.CENTER);
+            RoundedButton detalhesButton = new RoundedButton(15, new Color(255, 255, 255), null);
+            detalhesButton.setText("Detalhes");
+            detalhesButton.setForeground(new Color(0, 0, 0));
+            detalhesButton.setBounds(55, 150, 100, 30);
+            detalhesButton.addActionListener(this);
+            detalhesButton.setActionCommand("detalhes_" + acumuladorID);
+
+            JLabel nomeClienteLabel = new JLabel("Cliente: " + evento.getNomeCliente());
             nomeClienteLabel.setForeground(new Color(255, 255, 255));
             nomeClienteLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-            nomeClienteLabel.setBounds(x + 5, y + 15, panelWidth - 10, 20);
+            nomeClienteLabel.setBounds(5, 15, panelWidth - 10, 20);
             labels.add(nomeClienteLabel);
 
-            JLabel tipoEventoLabel = new JLabel("Tipo: " + evento.getTipoEventoToString(), SwingConstants.CENTER);
+            JLabel tipoEventoLabel = new JLabel("Tipo: " + evento.getTipoEventoToString());
             tipoEventoLabel.setForeground(new Color(255, 255, 255));
             tipoEventoLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-            tipoEventoLabel.setBounds(x + 5, y + 35, panelWidth - 10, 20);
+            tipoEventoLabel.setBounds(5, 35, panelWidth - 10, 20);
             labels.add(tipoEventoLabel);
 
-            JLabel localLabel = new JLabel("Local: " + evento.getLocal(), SwingConstants.CENTER);
+            JLabel localLabel = new JLabel("Local: " + evento.getLocal());
             localLabel.setForeground(new Color(255, 255, 255));
             localLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-            localLabel.setBounds(x + 5, y + 55, panelWidth - 10, 20);
+            localLabel.setBounds(5, 55, panelWidth - 10, 20);
             labels.add(localLabel);
 
-            JLabel horaLabel = new JLabel("Hora: " + evento.getHora(), SwingConstants.CENTER);
+            JLabel horaLabel = new JLabel("Hora: " + evento.getHora());
             horaLabel.setForeground(new Color(255, 255, 255));
             horaLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-            horaLabel.setBounds(x + 5, y + 75, panelWidth - 10, 20);
+            horaLabel.setBounds(5, 75, panelWidth - 10, 20);
             labels.add(horaLabel);
 
-            JLabel dataLabel = new JLabel("Data: " + evento.getData(), SwingConstants.CENTER);
+            JLabel dataLabel = new JLabel("Data: " + evento.getData());
             dataLabel.setForeground(new Color(255, 255, 255));
             dataLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-            dataLabel.setBounds(x + 5, y + 95, panelWidth - 10, 20);
+            dataLabel.setBounds(5, 95, panelWidth - 10, 20);
             labels.add(dataLabel);
 
-            JLabel descricaoLabel = new JLabel("Descrição: " + evento.getDescricao(), SwingConstants.CENTER);
+            JLabel descricaoLabel = new JLabel("Descrição: " + evento.getDescricao());
             descricaoLabel.setForeground(new Color(255, 255, 255));
             descricaoLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-            descricaoLabel.setBounds(x + 5, y + 115, panelWidth - 10, 20);
+            descricaoLabel.setBounds(5, 115, panelWidth - 10, 20);
             labels.add(descricaoLabel);
 
+            eventoPanel.add(nomeClienteLabel);
+            eventoPanel.add(tipoEventoLabel);
+            eventoPanel.add(localLabel);
+            eventoPanel.add(horaLabel);
+            eventoPanel.add(dataLabel);
+            eventoPanel.add(descricaoLabel);
+            eventoPanel.add(detalhesButton);
+
             panels.add(eventoPanel);
-            frame.add(nomeClienteLabel);
-            frame.add(tipoEventoLabel);
-            frame.add(localLabel);
-            frame.add(horaLabel);
-            frame.add(dataLabel);
-            frame.add(descricaoLabel);
+            originalYPositions.add(y);
+
             frame.add(eventoPanel);
-            frame.revalidate();
-            frame.repaint();
 
             acumulador++;
+            acumuladorID++;
 
             x += panelWidth + spacing;
             if (acumulador % 3 == 0) {
@@ -158,16 +197,10 @@ public class VisualComum extends JFrame implements ActionListener, AdjustmentLis
                 y += panelHeight + spacing;
             }
         }
+    }
 
-        frame.add(principalLabel);
-        frame.add(orderConttrl);
-        // frame.add(addButton);
-        frame.add(logout);
-        frame.add(scrollBar);
-        frame.add(panel2);
-        frame.add(panel1);
-        frame.setLayout(null);
-
+    public void frameDispose() {
+        frame.dispose();
     }
 
     @Override
@@ -176,13 +209,28 @@ public class VisualComum extends JFrame implements ActionListener, AdjustmentLis
 
         if (o == addButton) {
             AddEvento newEvento = new AddEvento();
-
+        } else if (o instanceof RoundedButton) {
+            RoundedButton button = (RoundedButton) o;
+            if (button.getActionCommand().startsWith("detalhes_")) {
+                String indexString = button.getActionCommand().substring(9);
+                int eventoIndex = Integer.parseInt(indexString);
+                Evento evento = listaEventos.get(eventoIndex - 1);
+                if (evento != null) {
+                    DetahlesAdmin frameDetahles =new DetahlesAdmin(evento);
+                    frameDetahles.setVisualAdimin(this);
+                }
+            }
         }
     }
 
     @Override
     public void adjustmentValueChanged(AdjustmentEvent arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adjustmentValueChanged'");
+        int value = scrollBar.getValue();
+        for (int i = 0; i < panels.size(); i++) {
+            RoundedPanel panel = panels.get(i);
+            int originalY = originalYPositions.get(i);
+            panel.setBounds(panel.getX(), originalY - value, panel.getWidth(), panel.getHeight());
+        }
+        frame.repaint();
     }
 }

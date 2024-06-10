@@ -1,4 +1,4 @@
-package com.ordercontrol.ui;
+package com.ordercontrol.ui.administrador;
 
 import javax.swing.*;
 
@@ -239,7 +239,7 @@ public class AddEvento extends JFrame implements ActionListener {
             boolean criarEvento = cadastrar.criarEvento(evento);
             if (criarEvento = true) {
                 JOptionPane.showMessageDialog(null, "Evento cadastrado");
-                VisualAdmin visualAdmin = new VisualAdmin();
+                TelaAdmin visualAdmin = new TelaAdmin();
                 visualAdmin.mostrarEventos();
                 
                 framePrincipal.dispose();
