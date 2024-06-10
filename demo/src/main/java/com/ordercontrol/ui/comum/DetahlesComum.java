@@ -98,7 +98,7 @@ public class DetahlesComum implements ActionListener {
         framePrincipal.add(horaLabel);
         framePrincipal.add(dataLabel);
         framePrincipal.add(descricaoLabel);
-        framePrincipal.add(deletar);
+        // framePrincipal.add(deletar);
         framePrincipal.add(painel);
         framePrincipal.setLayout(null);
 
