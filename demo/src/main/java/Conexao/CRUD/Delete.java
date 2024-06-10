@@ -27,7 +27,7 @@ public class Delete {
         }
     }
 
-    public void deletarEvento() {
+    public void deletarEvento(int id) {
         // 1: Definir o comando SQL
         String sql = "DELETE FROM tb_eventos WHERE id = ?";
         // 2: Abrir uma conexão
@@ -36,7 +36,7 @@ public class Delete {
             // 3: Pré compila o comando
             PreparedStatement ps = c.prepareStatement(sql);
             // 4: Preenche os dados faltantes
-            ps.setInt(1, evento.getId());
+            ps.setInt(1, id);
             // 5: Executa o comando
             ps.execute();
         } catch (Exception e) {

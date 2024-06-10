@@ -242,7 +242,8 @@ public class AddEvento extends JFrame implements ActionListener {
             boolean criarEvento = cadastrar.criarEvento(evento);
             if (criarEvento = true) {
                 JOptionPane.showMessageDialog(null, "Evento cadastrado");
-                // VisualAdmin visualAdmin = visualAdmin.criarEvento();
+                VisualAdmin visualAdmin = new VisualAdmin();
+                visualAdmin.mostrarEventos();
                 
                 framePrincipal.dispose();
             } else {

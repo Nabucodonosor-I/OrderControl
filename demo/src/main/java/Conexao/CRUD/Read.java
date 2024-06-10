@@ -38,7 +38,7 @@ public class Read {
     public ArrayList<Evento> listarEventos() {
         Connection conn = null;
         // 1: Definir o comando SQL
-        ArrayList<Evento> listaEventos = new ArrayList<Evento>();
+         ArrayList<Evento> listaEventos = new ArrayList<Evento>();
         String sql = "SELECT * FROM tb_eventos";
 
         // 2: Abrir uma conexão
@@ -54,6 +54,7 @@ public class Read {
             // 5: itera sobre o resultado
             while (rs.next()) {
                 Evento evento = new Evento();
+                evento.setId(rs.getInt("id"));
                 evento.setTipoEvento(rs.getInt("tipoEvento"));
                 evento.setNomeCliente(rs.getString("nomeCliente"));
                 evento.setLocal(rs.getString("local"));

@@ -37,20 +37,12 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
     JScrollBar scrollBar = new JScrollBar();
     RoundedPanel painelBranco = new RoundedPanel(5, new Color(255, 255, 255));
 
-    int x = 30;
-    int y = 150;
-    int panelWidth = 215;
-    int panelHeight = 195;
-    int spacing = 15;
-    int acumulador = 0;
+
 
     ArrayList<RoundedPanel> panels = new ArrayList<>();
     ArrayList<Integer> originalYPositions = new ArrayList<>();
     ArrayList<Evento> listaEventos = new ArrayList<>();
     ArrayList<JLabel> labels = new ArrayList<>();
-    Read read = new Read();
-
-
 
     public VisualAdmin() {
         frame.setSize(750, 600);
@@ -61,8 +53,6 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
         frame.getContentPane().setBackground(new Color(255, 255, 255));
         frame.setIconImage(imageIcon1.getImage());
         frame.setLayout(null);
-        
-        listaEventos=read.listarEventos();
 
         // Configurações label
         principalLabel.setBounds(25, 25, 90, 90);
@@ -116,13 +106,30 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
         frame.add(panel1);
         frame.add(painelBranco);
 
+        mostrarEventos();
         frame.setLayout(null);
     }
 
-    public void criarEvento() {
-        for (int i = 0; i < listaEventos.size(); i++) {
-            Evento evento = listaEventos.get(i);
+    public void mostrarEventos() {
+        int x = 30;
+        int y = 150;
+        int panelWidth = 215;
+        int panelHeight = 195;
+        int spacing = 15;
+        int acumulador = 0;
+        int acumuladorID = 1;
 
+        for (RoundedPanel panel : panels) {
+            frame.remove(panel);
+        }
+        panels.clear();
+        originalYPositions.clear();
+        labels.clear();
+
+        Read read = new Read();
+        listaEventos = read.listarEventos();
+
+        for (Evento evento : listaEventos) {
             RoundedPanel eventoPanel = new RoundedPanel(10, new Color(28, 35, 43));
             eventoPanel.setLayout(null);
             eventoPanel.setBounds(x, y, panelWidth, panelHeight);
@@ -132,7 +139,7 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
             detalhesButton.setForeground(new Color(0, 0, 0));
             detalhesButton.setBounds(55, 150, 100, 30);
             detalhesButton.addActionListener(this);
-            detalhesButton.setActionCommand("detalhes_" + i);
+            detalhesButton.setActionCommand("detalhes_" + acumuladorID);
 
             JLabel nomeClienteLabel = new JLabel("Cliente: " + evento.getNomeCliente());
             nomeClienteLabel.setForeground(new Color(255, 255, 255));
@@ -184,6 +191,7 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
             frame.add(eventoPanel);
 
             acumulador++;
+            acumuladorID++;
 
             x += panelWidth + spacing;
             if (acumulador % 3 == 0) {
@@ -191,6 +199,10 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
                 y += panelHeight + spacing;
             }
         }
+    }
+
+    public void frameDispose() {
+        frame.dispose();
     }
 
     @Override
@@ -204,9 +216,10 @@ public class VisualAdmin extends JFrame implements ActionListener, AdjustmentLis
             if (button.getActionCommand().startsWith("detalhes_")) {
                 String indexString = button.getActionCommand().substring(9);
                 int eventoIndex = Integer.parseInt(indexString);
-                Evento evento = listaEventos.get(eventoIndex);
+                Evento evento = listaEventos.get(eventoIndex - 1);
                 if (evento != null) {
-                    new FrameDetahles(evento);
+                    FrameDetahles frameDetahles =new FrameDetahles(evento);
+                    frameDetahles.setVisualAdimin(this);
                 }
             }
         }
