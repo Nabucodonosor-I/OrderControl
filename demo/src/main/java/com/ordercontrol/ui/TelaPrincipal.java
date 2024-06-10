@@ -48,6 +48,9 @@ public class TelaPrincipal extends JFrame implements ActionListener {
     JLabel descricao1 = new JLabel();
     JLabel descricao2 = new JLabel();
 
+    JLabel erro;
+    JLabel empty;
+
     public TelaPrincipal() {
 
         // configurações frame
@@ -180,8 +183,6 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 
     }
 
-    
-
     // acionamento do botão login
 
     @Override
@@ -194,14 +195,19 @@ public class TelaPrincipal extends JFrame implements ActionListener {
             String senhaChars = getPassword();
 
             if (getTextUsuario().isEmpty() || getPassword().isEmpty()) {
-
-                JLabel empty = new JLabel();
-                empty.setText("Campos Obrigatorios");
-                empty.setForeground(new Color(255, 0, 0));
-                empty.setFont(new Font("Arial", Font.BOLD, 12));
-                empty.setBounds(470, 100, 200, 100);
-                framePrincipal.add(empty);
-                framePrincipal.repaint();
+                if (empty != null) {
+                    framePrincipal.remove(empty);
+                    framePrincipal.repaint();
+                    empty = null;
+                } else {
+                    empty = new JLabel();
+                    empty.setText("Campos Obrigatorios");
+                    empty.setForeground(new Color(255, 0, 0));
+                    empty.setFont(new Font("Arial", Font.BOLD, 12));
+                    empty.setBounds(470, 100, 200, 100);
+                    framePrincipal.add(empty);
+                    framePrincipal.repaint();
+                }
 
             } else {
 
@@ -211,19 +217,26 @@ public class TelaPrincipal extends JFrame implements ActionListener {
                     if (usuario.getAdmin() == 1) {
                         framePrincipal.dispose();
                         TelaAdmin frame = new TelaAdmin();
-                    } else if(usuario.getAdmin() == 0) {
+                    } else if (usuario.getAdmin() == 0) {
                         framePrincipal.dispose();
                         TelaComum frame = new TelaComum();
                     }
 
                 } else {
-                    JLabel erro = new JLabel();
-                    erro.setText("Usuarios ou senha invalidos");
-                    erro.setForeground(new Color(255, 0, 0));
-                    erro.setFont(new Font("Arial", Font.BOLD, 12));
-                    erro.setBounds(470, 100, 200, 100);
-                    framePrincipal.add(erro);
-                    framePrincipal.repaint();
+                    if (erro != null) {
+                        framePrincipal.remove(erro);
+                        framePrincipal.repaint();
+                        erro = null;
+                    } else {
+                        erro = new JLabel();
+                        erro.setText("Usuarios ou senha invalidos");
+                        erro.setForeground(new Color(255, 0, 0));
+                        erro.setFont(new Font("Arial", Font.BOLD, 12));
+                        erro.setBounds(470, 100, 200, 100);
+                        framePrincipal.add(erro);
+                        framePrincipal.repaint();
+                    }
+
                 }
             }
         } else if (o == exitButton) {
