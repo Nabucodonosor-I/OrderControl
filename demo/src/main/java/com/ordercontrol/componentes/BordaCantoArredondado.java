@@ -3,6 +3,13 @@ package com.ordercontrol.componentes;
 import java.awt.*;
 import javax.swing.border.AbstractBorder;
 
+/**
+ * https://www.guj.com.br/t/bordas-arredondadas-em-java/422941/2
+ * 
+ * agradeimento ao 
+ * @author David Buzatto 
+ */
+
 public class BordaCantoArredondado extends AbstractBorder {
 
     private int red;
@@ -32,10 +39,3 @@ public class BordaCantoArredondado extends AbstractBorder {
         g2d.dispose();
     }
 }
-
-
-/*
- * https://www.guj.com.br/t/bordas-arredondadas-em-java/422941/2
- * 
- * agradeimento ao David Buzatto 
- */

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="74d3ece9-7672-4351-80a7-373c73567523" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ScripMySQL/db_ordercontrol.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ScripMySQL/db_ordercontrol.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/DAO/CRUD/Read.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/DAO/CRUD/Read.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/DAO/CRUD/ValidarUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/componentes/BordaCantoArredondado.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/componentes/BordaCantoArredondado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/componentes/RoundedPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/componentes/RoundedPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/TelaCadastro.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/TelaCadastro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/TelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/TelaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/administrador/AddEvento.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/administrador/AddEvento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/administrador/DetahlesAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/administrador/DetahlesAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/administrador/TelaAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/administrador/TelaAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/comum/DetahlesComum.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/comum/DetahlesComum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/comum/TelaComum.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/ordercontrol/ui/comum/TelaComum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/DAO/CRUD/Read.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/DAO/CRUD/Read.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/DAO/CRUD/ValidarUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/Main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/componentes/BordaCantoArredondado.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/componentes/BordaCantoArredondado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/TelaCadastro.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/TelaCadastro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/TelaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/TelaPrincipal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/AddEvento.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/AddEvento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/DetahlesAdmin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/DetahlesAdmin$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/DetahlesAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/DetahlesAdmin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/TelaAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/administrador/TelaAdmin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/comum/DetahlesComum$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/comum/DetahlesComum$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/comum/DetahlesComum.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/comum/DetahlesComum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/comum/TelaComum.class" beforeDir="false" afterPath="$PROJECT_DIR$/demo/target/classes/com/ordercontrol/ui/comum/TelaComum.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2hxxk2isqhkE4RMDhMxIjtnDULz" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/henrr/Documents/GitHub/OrderControl&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-22" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.ordercontrol.Main.Main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ordercontrol.Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="OrderControl" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="OrderControl" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="OrderControl" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="OrderControl" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="OrderControl" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <module name="OrderControl" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Sphinx task">
+      <module name="OrderControl" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="74d3ece9-7672-4351-80a7-373c73567523" name="Changes" comment="" />
+      <created>1718549670156</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1718549670156</updated>
+      <workItem from="1718549671244" duration="2552000" />
+      <workItem from="1718553102375" duration="128000" />
+      <workItem from="1718553244129" duration="45000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

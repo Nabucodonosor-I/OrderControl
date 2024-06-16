@@ -2,7 +2,6 @@ package com.ordercontrol.ui.administrador;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,29 +15,28 @@ import com.ordercontrol.model.*;
 
 public class DetahlesAdmin implements ActionListener {
 
-    JFrame framePrincipal = new JFrame();
-    String currentDirectory = System.getProperty("user.dir");
-    ImageIcon imageIcon1 = new ImageIcon(
+    private final JFrame framePrincipal = new JFrame();
+    private final String currentDirectory = System.getProperty("user.dir");
+    private final ImageIcon imageIcon1 = new ImageIcon(
             currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
 
-    JLabel nomeClienteLabel = new JLabel();
-    JLabel tipoEventoLabel = new JLabel();
-    JLabel localLabel = new JLabel();
-    JLabel horaLabel = new JLabel();
-    JLabel dataLabel = new JLabel();
-    JLabel descricaoLabel = new JLabel();
+    private final JLabel nomeClienteLabel = new JLabel();
+    private final JLabel tipoEventoLabel = new JLabel();
+    private final JLabel localLabel = new JLabel();
+    private final JLabel horaLabel = new JLabel();
+    private final JLabel dataLabel = new JLabel();
+    private final JLabel descricaoLabel = new JLabel();
 
-    RoundedPanel painel = new RoundedPanel(10, new Color(28, 35, 43));
-    RoundedButton deletar = new RoundedButton(10, new Color(54, 54, 54), null);
+    private final RoundedPanel painel = new RoundedPanel(10, new Color(28, 35, 43));
+    private final RoundedButton deletar = new RoundedButton(10, new Color(54, 54, 54), null);
 
-    TelaAdmin visualAdmin = null;
+    private TelaAdmin visualAdmin = null;
 
     DetahlesAdmin(Evento evento) {
         // configurações frame
         framePrincipal.setSize(300, 400);
         framePrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        // framePrincipal.setResizable(false);
-        // framePrincipal.setUndecorated(true);
+        framePrincipal.setResizable(false);
         framePrincipal.setVisible(true);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
@@ -79,6 +77,7 @@ public class DetahlesAdmin implements ActionListener {
         deletar.setBounds(95, 275, 100, 50);
         deletar.setText("Deletar");
         deletar.setForeground(new Color(255, 255, 255));
+        deletar.setFocusable(false);
         deletar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

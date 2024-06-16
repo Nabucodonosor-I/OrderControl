@@ -8,59 +8,50 @@ import com.ordercontrol.model.*;
 
 import java.awt.Color;
 import java.awt.Font;
-// import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+public class AddEvento implements ActionListener {
 
-
-public class AddEvento extends JFrame implements ActionListener {
-
-    String currentDirectory = System.getProperty("user.dir");
+    private final String currentDirectory = System.getProperty("user.dir");
     
-    ValidarUsuario validar = new ValidarUsuario();
+    private final JFrame framePrincipal = new JFrame();
+    private final RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
+    private final ImageIcon imageIcon1 = new ImageIcon(
+         currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
+    private final CustomRadioButton ordemServ = new CustomRadioButton(new Color(0, 0, 0));
+    private final CustomRadioButton orcam = new CustomRadioButton(new Color(0, 0, 0));
+    private final ButtonGroup group = new ButtonGroup();
+    private final RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
+    private final RoundedPanel painel2 = new RoundedPanel(20, new Color(255, 255, 255));
+    private final JTextField cliente = new JTextField();
+    private final JTextField local = new JTextField();
+    private final JTextField data = new JTextField();
+    private final JTextField descricao = new JTextField();
+    private final JTextField hora = new JTextField();
+    private final JLabel descricaoLabel = new JLabel();
+    private final JLabel clienteLabel = new JLabel();
+    private final JLabel localLabel = new JLabel();
+    private final JLabel dataLabel = new JLabel();
+    private final JLabel orderConttrl = new JLabel();
+    private final JLabel orcanLabel = new JLabel();
+    private final JLabel ordemServLabel = new JLabel();
+    private final JLabel horaLabel = new JLabel();
+    private TelaAdmin admin = null;
 
-    JFrame framePrincipal = new JFrame();
-    RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
-    JButton exitButton = new JButton("x");
-    JLabel principalLabel = new JLabel();
-    ImageIcon imageIcon1 = new ImageIcon(
-            currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
-    CustomRadioButton ordemServ = new CustomRadioButton(new Color(0, 0, 0));
-    CustomRadioButton orcam = new CustomRadioButton(new Color(0, 0, 0));
-    ButtonGroup group = new ButtonGroup();
-    RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
-    RoundedPanel painel2 = new RoundedPanel(20, new Color(255, 255, 255));
-    JTextField cliente = new JTextField();
-    JTextField local = new JTextField();
-    JTextField data = new JTextField();
-    JTextField descricao = new JTextField();
-    JTextField hora = new JTextField();
-    JButton submit = new JButton("Enviar ");
-    JLabel label = new JLabel();
-    JLabel descricaoLabel = new JLabel();
-    JLabel clienteLabel = new JLabel();
-    JLabel localLabel = new JLabel();
-    JLabel dataLabel = new JLabel();
-    JLabel bemVindo = new JLabel();
-    JLabel credenciais = new JLabel();
-    JLabel orderConttrl = new JLabel();
-    JLabel orcanLabel = new JLabel();
-    JLabel ordemServLabel = new JLabel();
-    JLabel horaLabel = new JLabel();
+    public AddEvento(TelaAdmin admin) {
+        this.admin = admin;
 
-    public AddEvento() {
         // configurações frame
         framePrincipal.setSize(750, 600);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrincipal.setResizable(false);
-        // framePrincipal.setUndecorated(true);
         framePrincipal.setVisible(true);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
         framePrincipal.setIconImage(imageIcon1.getImage());
 
-        //config painel
+        // config painel
         painel.setBounds(15, 15, 705, 530);
         painel2.setBounds(25, 25, 685, 510);
 
@@ -119,18 +110,6 @@ public class AddEvento extends JFrame implements ActionListener {
         dataLabel.setFont(new Font("Arial", Font.BOLD, 15));
         dataLabel.setBounds(425, 165, 125, 25);
 
-        // config Label Bem vindo
-        bemVindo.setText("Bem Vindo");
-        bemVindo.setForeground(new Color(255, 255, 255));
-        bemVindo.setFont(new Font("Arial", Font.BOLD, 25));
-        bemVindo.setBounds(130, 30, 300, 40);
-
-        // config label credenciais
-        credenciais.setText("Insira seus dados: ");
-        credenciais.setForeground(new Color(0, 0, 0));
-        credenciais.setFont(new Font("Arial", Font.BOLD, 13));
-        credenciais.setBounds(400, 20, 300, 30);
-
         // config Label OrderControl
         orderConttrl.setText("OrderControl");
         orderConttrl.setForeground(new Color(0, 0, 0));
@@ -166,33 +145,11 @@ public class AddEvento extends JFrame implements ActionListener {
         orcam.setBounds(400, 320, 20, 20);
         orcam.setOpaque(false);
 
-
-        // Configuração botão de saida
-        exitButton.setBounds(705, 0, 45, 45);
-        exitButton.setBackground(new Color(255, 255, 255));
-        exitButton.setFocusable(false);
-        exitButton.setFont(new Font("Arial", Font.BOLD, 20));
-        exitButton.setBorder(BorderFactory.createEmptyBorder());
-        exitButton.setForeground(new Color(0, 0, 0));
-        exitButton.addActionListener(this);
-
-        // configurações label
-        principalLabel.setBounds(95, 55, 200, 200);
-        principalLabel.setForeground(new Color(255, 0, 0));
-        principalLabel.setFont(new Font("MV Boli", Font.BOLD, 25));
-        // principalLabel.setIcon(imageIcon2);
-        principalLabel.setHorizontalTextPosition(JLabel.CENTER);
-        principalLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        principalLabel.setIconTextGap(-70);
-        principalLabel.setVerticalAlignment(JLabel.CENTER);
-        principalLabel.setHorizontalAlignment(JLabel.CENTER);
-
         // config grupo de botão
         group.add(ordemServ);
         group.add(orcam);
 
         // adicionado
-        framePrincipal.add(principalLabel);
         framePrincipal.add(local);
         framePrincipal.add(data);
         framePrincipal.add(cadastroButton);
@@ -206,8 +163,6 @@ public class AddEvento extends JFrame implements ActionListener {
         framePrincipal.add(dataLabel);
         framePrincipal.add(ordemServLabel);
         framePrincipal.add(orcanLabel);
-        // framePrincipal.add(bemVindo);
-        // framePrincipal.add(credenciais);
         framePrincipal.add(orderConttrl);
         framePrincipal.add(horaLabel);
         framePrincipal.add(hora);
@@ -219,14 +174,13 @@ public class AddEvento extends JFrame implements ActionListener {
 
     public int tipoEvento() {
         int tipo = 0;
-        if(ordemServ.isSelected()) {
+        if (ordemServ.isSelected()) {
             tipo = 0;
         } else if (orcam.isSelected()) {
             tipo = 1;
         }
         return tipo;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -239,15 +193,14 @@ public class AddEvento extends JFrame implements ActionListener {
             boolean criarEvento = cadastrar.criarEvento(evento);
             if (criarEvento = true) {
                 JOptionPane.showMessageDialog(null, "Evento cadastrado");
+                admin.frameDispose();
                 TelaAdmin visualAdmin = new TelaAdmin();
-                visualAdmin.mostrarEventos();
-                
+                visualAdmin.mostrarEventos(new Read());
+
                 framePrincipal.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadsrar usuario");
             }
-        } else if (o == exitButton) {
-            framePrincipal.dispose();
         }
     }
 }

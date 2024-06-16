@@ -13,40 +13,37 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TelaPrincipal extends JFrame implements ActionListener {
+public class TelaPrincipal implements ActionListener {
 
     String senhaUser;
     String usuarioUser;
 
-    String currentDirectory = System.getProperty("user.dir");
+    private final String currentDirectory = System.getProperty("user.dir");
 
-    ValidarUsuario validar = new ValidarUsuario();
+    private final Read read = new Read();
 
-    JFrame framePrincipal = new JFrame();
-    RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54), null);
-    RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
-    JButton exitButton = new JButton("x");
-    JLabel principalLabel = new JLabel();
-    RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
-    ImageIcon imageIcon1 = new ImageIcon(
+    private final JFrame framePrincipal = new JFrame();
+    private final RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54), null);
+    private final RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
+    private final JButton exitButton = new JButton("x");
+    private final JLabel principalLabel = new JLabel();
+    private final RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
+    private final ImageIcon imageIcon1 = new ImageIcon(
             currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
-    ImageIcon imageIcon2 = new ImageIcon(
+    private final ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon(
                     currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
                     .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
-    // Border border = BorderFactory.createLineBorder(Color.RED,1);
 
-    JTextField usuario = new JTextField();
-    JPasswordField senha = new JPasswordField();
-    JButton submit = new JButton("Enviar ");
-    JLabel label = new JLabel();
-    JLabel senhaLabel = new JLabel();
-    JLabel usuarioLabel = new JLabel();
-    JLabel bemVindo = new JLabel();
-    JLabel credenciais = new JLabel();
-    JLabel orderConttrl = new JLabel();
-    JLabel descricao1 = new JLabel();
-    JLabel descricao2 = new JLabel();
+    private final JTextField usuario = new JTextField();
+    private final JPasswordField senha = new JPasswordField();
+    private final JLabel senhaLabel = new JLabel();
+    private final JLabel usuarioLabel = new JLabel();
+    private final JLabel bemVindo = new JLabel();
+    private final JLabel credenciais = new JLabel();
+    private final JLabel orderConttrl = new JLabel();
+    private final JLabel descricao1 = new JLabel();
+    private final JLabel descricao2 = new JLabel();
 
     JLabel erro;
     JLabel empty;
@@ -58,8 +55,6 @@ public class TelaPrincipal extends JFrame implements ActionListener {
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrincipal.setTitle("Order Control");
         framePrincipal.setResizable(false);
-        // framePrincipal.setUndecorated(true);
-        // framePrincipal.setOpacity(0.8f);
         framePrincipal.setVisible(true);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
@@ -211,7 +206,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 
             } else {
 
-                Usuario usuario = validar.lerUsuario(usuarioText, senhaChars);
+                Usuario usuario = read.lerUsuario(usuarioText, senhaChars);
 
                 if (usuario != null) {
                     if (usuario.getAdmin() == 1) {

@@ -10,51 +10,47 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class TelaCadastro extends JFrame implements ActionListener {
+public class TelaCadastro extends TelaPrincipal {
 
-    String currentDirectory = System.getProperty("user.dir");
+    private final String currentDirectory = System.getProperty("user.dir");
+ 
+    private final JFrame framePrincipal = new JFrame();
+    private final RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
+    private final JLabel principalLabel = new JLabel();
+    private final RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
+    private final ImageIcon imageIcon1 = new ImageIcon(
+       currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
+    private final ImageIcon imageIcon2 = new ImageIcon(
+        new ImageIcon(
+                 currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
+                 .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
 
-    JFrame framePrincipal = new JFrame();
-    RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
-    JLabel principalLabel = new JLabel();
-    RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
-    ImageIcon imageIcon1 = new ImageIcon(
-            currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
-    ImageIcon imageIcon2 = new ImageIcon(
-            new ImageIcon(
-                    currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
-                    .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+    private final CustomRadioButton masculino = new CustomRadioButton(new Color(0, 0, 0));
+    private final CustomRadioButton feminino = new CustomRadioButton(new Color(0, 0, 0));
+    private final ButtonGroup group = new ButtonGroup();
 
-    CustomRadioButton masculino = new CustomRadioButton(new Color(0, 0, 0));
-    CustomRadioButton feminino = new CustomRadioButton(new Color(0, 0, 0));
-    ButtonGroup group = new ButtonGroup();
-
-    JTextField usuario = new JTextField();
-    JTextField email = new JTextField();
-    JTextField cpf = new JTextField();
-    JTextField senha = new JTextField();
-    JTextField idade = new JTextField();
-    JButton submit = new JButton("Enviar ");
-    JLabel label = new JLabel();
-    JLabel senhaLabel = new JLabel();
-    JLabel usuarioLabel = new JLabel();
-    JLabel emailLabel = new JLabel();
-    JLabel cpfLabel = new JLabel();
-    JLabel bemVindo = new JLabel();
-    JLabel credenciais = new JLabel();
-    JLabel orderConttrl = new JLabel();
-    JLabel masculinoLabel = new JLabel();
-    JLabel femininoLabel = new JLabel();
-    JLabel idadeLabel = new JLabel();
+    private final JTextField usuario = new JTextField();
+    private final JTextField email = new JTextField();
+    private final JTextField cpf = new JTextField();
+    private final JTextField senha = new JTextField();
+    private final JTextField idade = new JTextField();
+    private final JLabel senhaLabel = new JLabel();
+    private final JLabel usuarioLabel = new JLabel();
+    private final JLabel emailLabel = new JLabel();
+    private final JLabel cpfLabel = new JLabel();
+    private final JLabel bemVindo = new JLabel();
+    private final JLabel credenciais = new JLabel();
+    private final JLabel orderConttrl = new JLabel();
+    private final JLabel masculinoLabel = new JLabel();
+    private final JLabel femininoLabel = new JLabel();
+    private final JLabel idadeLabel = new JLabel();
 
     public TelaCadastro() {
         // configurações frame
         framePrincipal.setSize(750, 600);
         framePrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         framePrincipal.setResizable(false);
-        // framePrincipal.setUndecorated(true);
         framePrincipal.setVisible(true);
         framePrincipal.setLocationRelativeTo(null);
         framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
@@ -234,7 +230,6 @@ public class TelaCadastro extends JFrame implements ActionListener {
         return Integer.parseInt(idade.getText());
     }
 
-    // acionamento do botão login
 
     @Override
     public void actionPerformed(ActionEvent e) {

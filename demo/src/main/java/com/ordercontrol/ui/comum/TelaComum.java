@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
@@ -14,30 +13,30 @@ import javax.swing.*;
 import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
+import com.ordercontrol.ui.TelaPrincipal;
 
-public class TelaComum extends JFrame implements ActionListener, AdjustmentListener {
+public class TelaComum extends TelaPrincipal implements AdjustmentListener {
 
-    String currentDirectory = System.getProperty("user.dir");
-
-    ImageIcon imageIcon1 = new ImageIcon(
+    private final String currentDirectory = System.getProperty("user.dir");
+    private final ImageIcon imageIcon1 = new ImageIcon(
             currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
-    ImageIcon imageIcon2 = new ImageIcon(
+    private final ImageIcon imageIcon2 = new ImageIcon(
             new ImageIcon(
                     currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
                     .getImage().getScaledInstance(90, 90, Image.SCALE_SMOOTH));
-    JFrame frame = new JFrame();
-    JLabel principalLabel = new JLabel();
-    JLabel orderConttrl = new JLabel();
-    RoundedPanel panel1 = new RoundedPanel(10, new Color(28, 35, 43));
-    RoundedPanel panel2 = new RoundedPanel(10, new Color(255, 255, 255));
-    RoundedButton logout = new RoundedButton(20, new Color(54, 54, 54), null);
-    JScrollBar scrollBar = new JScrollBar();
-    RoundedPanel painelBranco = new RoundedPanel(5, new Color(255, 255, 255));
+    private final JFrame frame = new JFrame();
+    private final JLabel principalLabel = new JLabel();
+    private final JLabel orderConttrl = new JLabel();
+    private final RoundedPanel panel1 = new RoundedPanel(10, new Color(28, 35, 43));
+    private final RoundedPanel panel2 = new RoundedPanel(10, new Color(255, 255, 255));
+    private final RoundedButton logout = new RoundedButton(20, new Color(54, 54, 54), null);
+    private final JScrollBar scrollBar = new JScrollBar();
+    private final RoundedPanel painelBranco = new RoundedPanel(5, new Color(255, 255, 255));
 
-    ArrayList<RoundedPanel> panels = new ArrayList<>();
-    ArrayList<Integer> originalYPositions = new ArrayList<>();
-    ArrayList<Evento> listaEventos = new ArrayList<>();
-    ArrayList<JLabel> labels = new ArrayList<>();
+    private ArrayList<RoundedPanel> panels = new ArrayList<>();
+    private ArrayList<Integer> originalYPositions = new ArrayList<>();
+    private ArrayList<Evento> listaEventos = new ArrayList<>();
+    private ArrayList<JLabel> labels = new ArrayList<>();
 
     public TelaComum() {
         frame.setSize(750, 600);
@@ -92,11 +91,11 @@ public class TelaComum extends JFrame implements ActionListener, AdjustmentListe
         frame.add(panel1);
         frame.add(painelBranco);
 
-        mostrarEventos();
+        mostrarEventos(new Read());
         frame.setLayout(null);
     }
 
-    public void mostrarEventos() {
+    public void mostrarEventos(Read read) {
         int x = 30;
         int y = 150;
         int panelWidth = 215;
@@ -112,7 +111,6 @@ public class TelaComum extends JFrame implements ActionListener, AdjustmentListe
         originalYPositions.clear();
         labels.clear();
 
-        Read read = new Read();
         listaEventos = read.listarEventos();
 
         for (Evento evento : listaEventos) {
@@ -124,6 +122,7 @@ public class TelaComum extends JFrame implements ActionListener, AdjustmentListe
             detalhesButton.setText("Detalhes");
             detalhesButton.setForeground(new Color(0, 0, 0));
             detalhesButton.setBounds(55, 150, 100, 30);
+            detalhesButton.setFocusable(false);
             detalhesButton.addActionListener(this);
             detalhesButton.setActionCommand("detalhes_" + acumuladorID);
 
