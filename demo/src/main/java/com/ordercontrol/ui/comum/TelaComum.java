@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
@@ -13,9 +14,8 @@ import javax.swing.*;
 import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
-import com.ordercontrol.ui.TelaPrincipal;
 
-public class TelaComum extends TelaPrincipal implements AdjustmentListener {
+public class TelaComum implements ActionListener, AdjustmentListener {
 
     private final String currentDirectory = System.getProperty("user.dir");
     private final ImageIcon imageIcon1 = new ImageIcon(

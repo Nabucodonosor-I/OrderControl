@@ -27,10 +27,6 @@ public class RoundedButton extends JButton {
         repaint();
     }
 
-    public void setNewColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
     @Override
     protected void paintComponent(Graphics g) {
 
