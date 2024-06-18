@@ -15,17 +15,24 @@ import java.awt.event.ActionListener;
 public class TelaCadastro implements ActionListener {
 
     private final String currentDirectory = System.getProperty("user.dir");
- 
+
     private final JFrame framePrincipal = new JFrame();
     private final RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
+    private final RoundedButton voltarButton = new RoundedButton(10, new Color(255, 255, 255), null);
+
     private final JLabel principalLabel = new JLabel();
     private final RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     private final ImageIcon imageIcon1 = new ImageIcon(
-       currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
+            currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
     private final ImageIcon imageIcon2 = new ImageIcon(
-        new ImageIcon(
-                 currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
-                 .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+            new ImageIcon(
+                    currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\Logo.png")
+                    .getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
+
+    private final ImageIcon imageIcon3 = new ImageIcon(
+            new ImageIcon(
+                    currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\seta2.png")
+                    .getImage().getScaledInstance(70, 30, Image.SCALE_FAST));
 
     private final CustomRadioButton masculino = new CustomRadioButton(new Color(0, 0, 0));
     private final CustomRadioButton feminino = new CustomRadioButton(new Color(0, 0, 0));
@@ -59,6 +66,12 @@ public class TelaCadastro implements ActionListener {
 
         // config painel
         painel.setBounds(15, 15, 350, 530);
+
+        voltarButton.setIcon(imageIcon3);
+        voltarButton.setBounds(685, 5, 50, 50);
+        voltarButton.setFocusable(false);
+        voltarButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        voltarButton.addActionListener(this);
 
         // config text field usuario
         usuario.setBounds(470, 115, 200, 30);
@@ -178,6 +191,7 @@ public class TelaCadastro implements ActionListener {
         group.add(feminino);
 
         // adicionado
+        framePrincipal.add(voltarButton);
         framePrincipal.add(principalLabel);
         framePrincipal.add(email);
         framePrincipal.add(cpf);
@@ -231,7 +245,6 @@ public class TelaCadastro implements ActionListener {
         return Integer.parseInt(idade.getText());
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
@@ -248,6 +261,9 @@ public class TelaCadastro implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadsrar usuario");
             }
+        } else if (o == voltarButton) {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            framePrincipal.dispose();
         }
     }
 }
