@@ -14,6 +14,7 @@ import javax.swing.*;
 import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
+import com.ordercontrol.ui.TelaPrincipal;
 
 public class TelaAdmin implements ActionListener, AdjustmentListener {
 
@@ -207,7 +208,7 @@ public class TelaAdmin implements ActionListener, AdjustmentListener {
 
         if (o == addButton) {
             AddEvento newEvento = new AddEvento(this);
-        } else if (o instanceof RoundedButton) {
+        } if (o instanceof RoundedButton) {
             RoundedButton button = (RoundedButton) o;
             if (button.getActionCommand().startsWith("detalhes_")) {
                 String indexString = button.getActionCommand().substring(9);
@@ -218,6 +219,9 @@ public class TelaAdmin implements ActionListener, AdjustmentListener {
                     frameDetahles.setVisualAdimin(this);
                 }
             }
+        } if (o == logout) {
+            frame.dispose();
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
         }
     }
 

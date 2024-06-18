@@ -25,7 +25,6 @@ public class TelaPrincipal implements ActionListener {
     private final JFrame framePrincipal = new JFrame();
     private final RoundedButton loginButton = new RoundedButton(10, new Color(54, 54, 54), null);
     private final RoundedButton cadastroButton = new RoundedButton(10, new Color(54, 54, 54), null);
-    private final JButton exitButton = new JButton("x");
     private final JLabel principalLabel = new JLabel();
     private final RoundedPanel painel = new RoundedPanel(20, new Color(28, 35, 43));
     private final ImageIcon imageIcon1 = new ImageIcon(
@@ -133,15 +132,6 @@ public class TelaPrincipal implements ActionListener {
         cadastroButton.setBorder(BorderFactory.createRaisedBevelBorder());
         cadastroButton.addActionListener(this);
 
-        // onfiguração botão de saida
-        exitButton.setBounds(705, 0, 45, 45);
-        exitButton.setBackground(new Color(255, 255, 255));
-        exitButton.setFocusable(false);
-        exitButton.setFont(new Font("Arial", Font.BOLD, 20));
-        exitButton.setBorder(BorderFactory.createEmptyBorder());
-        exitButton.setForeground(new Color(0, 0, 0));
-        exitButton.addActionListener(this);
-
         // configurações label
         principalLabel.setBounds(95, 35, 200, 200);
         principalLabel.setForeground(new Color(255, 0, 0));
@@ -214,7 +204,7 @@ public class TelaPrincipal implements ActionListener {
                         TelaAdmin frame = new TelaAdmin();
                     } else if (usuario.getAdmin() == 0) {
                         framePrincipal.dispose();
-                        TelaComum frame = new TelaComum();
+                        TelaComum frame = new TelaComum(this);
                     }
 
                 } else {
@@ -234,8 +224,6 @@ public class TelaPrincipal implements ActionListener {
 
                 }
             }
-        } else if (o == exitButton) {
-            framePrincipal.dispose();
         } else if (o == cadastroButton) {
             TelaCadastro cadastro = new TelaCadastro();
             framePrincipal.dispose();

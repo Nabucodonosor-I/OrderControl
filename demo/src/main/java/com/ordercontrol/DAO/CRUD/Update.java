@@ -2,6 +2,7 @@ package com.ordercontrol.DAO.CRUD;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.ordercontrol.DAO.ConnectionFactory;
 import com.ordercontrol.model.*;
@@ -32,5 +33,48 @@ public class Update {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean inscreverUsuario(int idUsuario, int idEvento) {
+        boolean cadastrado = false;
+        String sqlRead = "SELECT ID_USUARIO1, ID_USUARIO2 FROM TB_EVENTOS WHERE ID = ?";
+        String sqlUpdate = "UPDATE TB_EVENTOS SET ID_USUARIO1 = ?, ID_USUARIO2 = ? WHERE ID = ?";
+
+        ConnectionFactory factory = new ConnectionFactory();
+        try (Connection c = factory.obtemConexao()) {
+            PreparedStatement readPs = c.prepareStatement(sqlRead);
+            PreparedStatement updatePs = c.prepareStatement(sqlUpdate);
+
+            readPs.setInt(1, idEvento);
+            ResultSet rs = readPs.executeQuery();
+
+            int idUsuario1 = 0;
+            int idUsuario2 = 0;
+
+            if (rs.next()) {
+                idUsuario1 = rs.getInt("id_usuario1");
+                idUsuario2 = rs.getInt("id_usuario2");
+            }
+
+            if (idUsuario1 == 0) {
+                idUsuario1 = idUsuario;
+                cadastrado = true;
+            } else if (idUsuario2 == 0) {
+                idUsuario2 = idUsuario;
+                cadastrado = true;
+            } else {
+                cadastrado = false;
+            }
+
+            updatePs.setInt(1, idUsuario1);
+            updatePs.setInt(2, idUsuario2);
+            updatePs.setInt(3, idEvento);
+            updatePs.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cadastrado;
     }
 }

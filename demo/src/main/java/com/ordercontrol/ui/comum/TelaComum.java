@@ -14,6 +14,7 @@ import javax.swing.*;
 import com.ordercontrol.DAO.CRUD.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
+import com.ordercontrol.ui.TelaPrincipal;
 
 public class TelaComum implements ActionListener, AdjustmentListener {
 
@@ -33,12 +34,16 @@ public class TelaComum implements ActionListener, AdjustmentListener {
     private final JScrollBar scrollBar = new JScrollBar();
     private final RoundedPanel painelBranco = new RoundedPanel(5, new Color(255, 255, 255));
 
+    Usuario usuario = null;
+    Read read = new Read();
+
     private ArrayList<RoundedPanel> panels = new ArrayList<>();
     private ArrayList<Integer> originalYPositions = new ArrayList<>();
     private ArrayList<Evento> listaEventos = new ArrayList<>();
     private ArrayList<JLabel> labels = new ArrayList<>();
 
-    public TelaComum() {
+    public TelaComum(TelaPrincipal telaPrincipal) {
+        this.usuario = read.lerUsuario(telaPrincipal.getTextUsuario(), telaPrincipal.getPassword());
         frame.setSize(750, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -201,10 +206,14 @@ public class TelaComum implements ActionListener, AdjustmentListener {
                 int eventoIndex = Integer.parseInt(indexString);
                 Evento evento = listaEventos.get(eventoIndex - 1);
                 if (evento != null) {
-                    DetahlesComum frameDetahles = new DetahlesComum(evento);
-                    frameDetahles.setVisualComum(this);
+                    DetahlesComum detalhesComum = new DetahlesComum(evento);
+                    detalhesComum.setUsuario(usuario);
+                    detalhesComum.setVisualComum(this);
                 }
             }
+        } if (o == logout) {
+            frame.dispose();
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
         }
     }
 

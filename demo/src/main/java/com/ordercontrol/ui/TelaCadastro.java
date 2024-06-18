@@ -10,8 +10,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class TelaCadastro extends TelaPrincipal {
+public class TelaCadastro implements ActionListener {
 
     private final String currentDirectory = System.getProperty("user.dir");
  
@@ -219,7 +220,7 @@ public class TelaCadastro extends TelaPrincipal {
         } else if (feminino.isSelected()) {
             return "f";
         }
-        return "";
+        return null;
     }
 
     public int getCpf() {
@@ -243,6 +244,7 @@ public class TelaCadastro extends TelaPrincipal {
             if (criarUsuario = true) {
                 JOptionPane.showMessageDialog(null, "Usuario cadastrado");
                 framePrincipal.dispose();
+                TelaPrincipal telaPrincipal = new TelaPrincipal();
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadsrar usuario");
             }
