@@ -1,25 +1,17 @@
 package com.ordercontrol.ui.comum;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.event.*;
+import com.ordercontrol.DAO.CRUD.Read;
+import com.ordercontrol.DAO.CRUD.Update;
+import com.ordercontrol.componentes.RoundedButton;
+import com.ordercontrol.componentes.RoundedPanel;
+import com.ordercontrol.model.Evento;
+import com.ordercontrol.model.Usuario;
+import com.ordercontrol.ui.ModeloTela;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+public class DetahlesComum extends ModeloTela {
 
-import com.ordercontrol.DAO.CRUD.*;
-import com.ordercontrol.componentes.*;
-import com.ordercontrol.model.*;
-
-public class DetahlesComum implements ActionListener {
-
-    private final JFrame framePrincipal = new JFrame();
-    private final String currentDirectory = System.getProperty("user.dir");
-    private final ImageIcon imageIcon1 = new ImageIcon(
-            currentDirectory + "\\demo\\src\\main\\resources\\Imagens\\68386.png");
     private final JLabel nomeClienteLabel = new JLabel();
     private final JLabel tipoEventoLabel = new JLabel();
     private final JLabel localLabel = new JLabel();
@@ -32,140 +24,97 @@ public class DetahlesComum implements ActionListener {
     private final JLabel cpfUsuario1 = new JLabel();
     private final JLabel cpfUsuario2 = new JLabel();
     private final JLabel obs = new JLabel();
+    private final RoundedPanel painel = new RoundedPanel(10, AZUL);
+    private final RoundedButton registrar = new RoundedButton(10, CINZA, null);
 
-    private final RoundedPanel painel = new RoundedPanel(10, new Color(28, 35, 43));
-    private final RoundedButton registrar = new RoundedButton(10, new Color(54, 54, 54), null);
+    private Usuario usuario = null;
+    private final Read read = new Read();
+    private TelaComum telaComum = null;
 
-    Usuario usuario = null;
-    Read read = new Read();
-    TelaComum telaComum = null;
+    public DetahlesComum(Evento evento) {
+        super(600, 400, 2);
+        configureLabels(evento);
+        configurePanel();
+        configButtons(evento);
+        addComponentsToFrame();
+        setLayout(null);
+    }
 
-    DetahlesComum(Evento evento) {
-        // configurações frame
-        framePrincipal.setSize(600, 400);
-        framePrincipal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        framePrincipal.setResizable(false);
-        framePrincipal.setVisible(true);
-        framePrincipal.setLocationRelativeTo(null);
-        framePrincipal.getContentPane().setBackground(new Color(255, 255, 255));
-        framePrincipal.setIconImage(imageIcon1.getImage());
+    
+    // Configure labels
+    private void configureLabels(Evento evento) {
+        configLabel(nomeClienteLabel, "Cliente: " + evento.getNomeCliente(), BRANCO, DEJAVU_15, 15, 15, 300, 50);
+        configLabel(tipoEventoLabel, "Tipo: " + evento.getTipoEventoToString(), BRANCO, DEJAVU_15, 15, 35, 300, 50);
+        configLabel(localLabel, "Local: " + evento.getLocal(), BRANCO, DEJAVU_15, 15, 55, 300, 50);
+        configLabel(horaLabel, "Hora: " + evento.getHora(), BRANCO, DEJAVU_15, 15, 75, 300, 50);
+        configLabel(dataLabel, "Data: " + evento.getData(), BRANCO, DEJAVU_15, 15, 95, 300, 50);
+        configLabel(descricaoLabel, "Descrição: " + evento.getDescricao(), BRANCO, DEJAVU_15, 15, 115, 300, 50);
+        configLabel(obs, "Quantidade máxima de inscritos: 2", PRETO, DEJAVU_13, 315, 225, 300, 50);
+        configureUsuarioLabels(evento);
+    }
 
-        nomeClienteLabel.setText("Cliente: " + evento.getNomeCliente());
-        nomeClienteLabel.setBounds(15, 15, 300, 50);
-        nomeClienteLabel.setForeground(new Color(255, 255, 255));
-        nomeClienteLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-        tipoEventoLabel.setText("Tipo: " + evento.getTipoEventoToString());
-        tipoEventoLabel.setBounds(15, 35, 300, 50);
-        tipoEventoLabel.setForeground(new Color(255, 255, 255));
-        tipoEventoLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-        localLabel.setText("Local: " + evento.getLocal());
-        localLabel.setBounds(15, 55, 300, 50);
-        localLabel.setForeground(new Color(255, 255, 255));
-        localLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-        horaLabel.setText("Hora: " + evento.getHora());
-        horaLabel.setBounds(15, 75, 300, 50);
-        horaLabel.setForeground(new Color(255, 255, 255));
-        horaLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-        dataLabel.setText("Data: " + evento.getData());
-        dataLabel.setBounds(15, 95, 300, 50);
-        dataLabel.setForeground(new Color(255, 255, 255));
-        dataLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-        descricaoLabel.setText("Descrição: " + evento.getDescricao());
-        descricaoLabel.setBounds(15, 115, 300, 50);
-        descricaoLabel.setForeground(new Color(255, 255, 255));
-        descricaoLabel.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
+    private void configurePanel() {
         painel.setBounds(5, 5, 290, 255);
+    }
 
-        obs.setText("Quantidade maxima de inscritos: 2");
-        obs.setBounds(315, 225, 300, 50);
-        obs.setForeground(new Color(0, 0, 0));
-        obs.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 13));
-
+    private void configureUsuarioLabels(Evento evento) {
         int[] usuarios = evento.getUsuarios();
-
         if (usuarios[0] != 0) {
             usuario = read.getUsuarioById(usuarios[0]);
-
-            usuarioCadastrados.setText("Usuarios inscritos: ");
-            usuarioCadastrados.setBounds(315, 15, 300, 50);
-            usuarioCadastrados.setForeground(new Color(0, 0, 0));
-            usuarioCadastrados.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 18));
-
-            nomeUsuario1.setText("Nome: " + usuario.getNome());
-            nomeUsuario1.setBounds(315, 45, 300, 50);
-            nomeUsuario1.setForeground(new Color(0, 0, 0));
-            nomeUsuario1.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-            cpfUsuario1.setText("Cpf: " + usuario.getCpf());
-            cpfUsuario1.setBounds(315, 65, 300, 50);
-            cpfUsuario1.setForeground(new Color(0, 0, 0));
-            cpfUsuario1.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-            framePrincipal.add(usuarioCadastrados);
-            framePrincipal.add(nomeUsuario1);
-            framePrincipal.add(cpfUsuario1);
-
+            configLabel(usuarioCadastrados, "Usuários inscritos:", PRETO, 18, 315, 15, 300, 50);
+            configLabel(nomeUsuario1, "Nome: " + usuario.getNome(), PRETO, DEJAVU_15, 315, 45, 300, 50);
+            configLabel(cpfUsuario1, "Cpf: " + usuario.getCpf(), PRETO, DEJAVU_15, 315, 65, 300, 50);
             if (usuarios[1] != 0) {
                 usuario = read.getUsuarioById(usuarios[1]);
-
-                nomeUsuario2.setText("Nome: " + usuario.getNome());
-                nomeUsuario2.setBounds(315, 95, 300, 50);
-                nomeUsuario2.setForeground(new Color(0, 0, 0));
-                nomeUsuario2.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-                cpfUsuario2.setText("Cpf: " + usuario.getCpf());
-                cpfUsuario2.setBounds(315, 115, 300, 50);
-                cpfUsuario2.setForeground(new Color(0, 0, 0));
-                cpfUsuario2.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-                framePrincipal.add(nomeUsuario2);
-                framePrincipal.add(cpfUsuario2);
+                configLabel(nomeUsuario2, "Nome: " + usuario.getNome(), PRETO, DEJAVU_15, 315, 95, 300, 50);
+                configLabel(cpfUsuario2, "Cpf: " + usuario.getCpf(),PRETO, DEJAVU_15, 315, 115, 300, 50);
             }
         } else {
-            usuarioCadastrados.setText("Nenhum usuario registrado");
-            usuarioCadastrados.setBounds(315, 15, 300, 50);
-            usuarioCadastrados.setForeground(new Color(0, 0, 0));
-            usuarioCadastrados.setFont(new Font("DejaVu Sans Mono", Font.BOLD, 15));
-
-            framePrincipal.add(usuarioCadastrados);
+            configLabel(usuarioCadastrados, "Nenhum usuário registrado", PRETO, DEJAVU_15, 315, 15, 300, 50);
         }
+    }
 
+    private void configButtons(Evento evento) {
         registrar.setBounds(230, 280, 120, 50);
         registrar.setText("Inscrever-se");
-        registrar.setForeground(new Color(255, 255, 255));
+        registrar.setForeground(BRANCO);
         registrar.setFocusable(false);
         registrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Update update = new Update();
-
-                if (update.inscreverUsuario(usuario.getId(), evento.getId()) == true) {
-                    JOptionPane.showMessageDialog(null, "Seu registro no evento foi efetuado com sucesso!");
-                    framePrincipal.dispose();
-                    telaComum.mostrarEventos(read);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Evento já está com o número máximo de inscritos.");
-                }
+                RegistrarButton(evento);
             }
         });
+    }
 
-        framePrincipal.add(nomeClienteLabel);
-        framePrincipal.add(tipoEventoLabel);
-        framePrincipal.add(localLabel);
-        framePrincipal.add(horaLabel);
-        framePrincipal.add(dataLabel);
-        framePrincipal.add(descricaoLabel);
-        framePrincipal.add(registrar);
-        framePrincipal.add(obs);
-        framePrincipal.add(painel);
-        framePrincipal.setLayout(null);
+    private void RegistrarButton(Evento evento) {
+        Update update = new Update();
+        if (update.inscreverUsuario(usuario.getId(), evento.getId())) {
+            JOptionPane.showMessageDialog(null, "Seu registro no evento foi efetuado com sucesso!");
+            dispose();
+            if (telaComum != null) {
+                telaComum.mostrarEventos(read);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Evento já está com o número máximo de inscritos.");
+        }
+    }
 
+    private void addComponentsToFrame() {
+        add(nomeClienteLabel);
+        add(tipoEventoLabel);
+        add(localLabel);
+        add(horaLabel);
+        add(dataLabel);
+        add(descricaoLabel);
+        add(registrar);
+        add(obs);
+        add(painel);
+        add(usuarioCadastrados);
+        add(nomeUsuario1);
+        add(cpfUsuario1);
+        add(nomeUsuario2);
+        add(cpfUsuario2);
     }
 
     public void setVisualComum(TelaComum telaComum) {
@@ -178,7 +127,6 @@ public class DetahlesComum implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        // Method left intentionally empty
     }
-
 }
