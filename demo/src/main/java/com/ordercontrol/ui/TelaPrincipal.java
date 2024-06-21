@@ -1,9 +1,8 @@
 package com.ordercontrol.ui;
 
-import com.ordercontrol.DAO.CRUD.*;
+import com.ordercontrol.DAO.UsuarioDAO;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
-import com.ordercontrol.ui.administrador.TelaAdmin;
 import com.ordercontrol.ui.comum.TelaComum;
 
 import javax.swing.*;
@@ -14,7 +13,7 @@ public class TelaPrincipal extends ModeloTela {
     String senhaUser;
     String usuarioUser;
 
-    private final Read read = new Read();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     private final RoundedButton loginButton = new RoundedButton(10, CINZA, null);
     private final RoundedButton cadastroButton = new RoundedButton(10, CINZA, null);
@@ -111,6 +110,8 @@ public class TelaPrincipal extends ModeloTela {
         } else {
             erro = new JLabel();
             configLabel(erro, message, VERMELHO, ARIAL_12, x, y, width, height);
+            add(erro);
+            repaint();
         }
     }
 
@@ -119,29 +120,33 @@ public class TelaPrincipal extends ModeloTela {
         dispose();
     }
 
-    private void login() {
+    private Usuario login() {
         String usuarioText = getTextUsuario();
         String senhaChars = getPassword();
 
-        if (getTextUsuario().isEmpty() || getPassword().isEmpty()) {
+        if (usuarioText.isEmpty() || senhaChars.isEmpty()) {
             displayErroMessage("Campos Obrigatorios", 470, 100, 200, 100);
         } else {
 
-            Usuario usuario = read.lerUsuario(usuarioText, senhaChars);
+            Usuario usuario = usuarioDAO.lerUsuario(usuarioText, senhaChars);
 
             if (usuario != null) {
                 if (usuario.getAdmin() == 1) {
+                    new TelaComum(this, true);
                     dispose();
-                    new TelaAdmin();
+                    return usuario;
                 } else if (usuario.getAdmin() == 0) {
                     dispose();
-                    new TelaComum(this);
+                    new TelaComum(this, false);
+                    return usuario;
                 }
 
             } else {
                 displayErroMessage("Usuarios ou senha invalidos", 470, 100, 200, 100);
+                return null;
             }
         }
+        return null;
     }
 
     @Override

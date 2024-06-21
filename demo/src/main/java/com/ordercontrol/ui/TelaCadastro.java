@@ -2,7 +2,7 @@ package com.ordercontrol.ui;
 
 import javax.swing.*;
 
-import com.ordercontrol.DAO.CRUD.*;
+import com.ordercontrol.DAO.UsuarioDAO;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
 
@@ -149,8 +149,8 @@ public class TelaCadastro extends ModeloTela {
 
         if (o == cadastroButton) {
             Usuario user = new Usuario(getUsuario(), getSenha(), getEmail(), getSexo(), getCpf(), getIdade());
-            Create cadastrar = new Create();
-            boolean criarUsuario = cadastrar.criarUsuario(user);
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            boolean criarUsuario = usuarioDAO.criarUsuario(user);
             if (criarUsuario) {
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado");
                 dispose();

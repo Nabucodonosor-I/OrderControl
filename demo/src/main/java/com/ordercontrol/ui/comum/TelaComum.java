@@ -1,7 +1,6 @@
 package com.ordercontrol.ui.comum;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
@@ -9,39 +8,60 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-import com.ordercontrol.DAO.CRUD.*;
+import com.ordercontrol.DAO.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
 import com.ordercontrol.ui.ModeloTela;
+
 import com.ordercontrol.ui.TelaPrincipal;
+import com.ordercontrol.ui.administrador.AddEvento;
 
 public class TelaComum extends ModeloTela implements AdjustmentListener {
 
-    // Frame and components
     private final JLabel principalLabel = new JLabel();
     private final JLabel orderConttrl = new JLabel();
     private final RoundedPanel panel1 = new RoundedPanel(10, AZUL);
     private final RoundedPanel panel2 = new RoundedPanel(10, BRANCO);
-    private final RoundedButton logout = new RoundedButton(20, CINZA, null);
+    public final RoundedButton logout = new RoundedButton(20, CINZA, null);
     private final JScrollBar scrollBar = new JScrollBar();
     private final RoundedPanel painelBranco = new RoundedPanel(5, BRANCO);
+    protected final RoundedButton addButton = new RoundedButton(20, CINZA, null);
 
-    // User and database
     private Usuario usuario = null;
-    private final Read read = new Read();
+    private final EventoDAO eventoDAO = new EventoDAO();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-    // Event handling
+
     private ArrayList<RoundedPanel> panels = new ArrayList<>();
     private ArrayList<Integer> originalYPositions = new ArrayList<>();
     private ArrayList<Evento> listaEventos = new ArrayList<>();
     private ArrayList<JLabel> labels = new ArrayList<>();
 
+    int x = 30;
+    int y = 150;
+    int panelWidth = 215;
+    int panelHeight = 195;
+    int spacing = 15;
+    int acumulador = 0;
+    int acumuladorID = 1;
+    Boolean adm;
+
     public TelaComum(TelaPrincipal telaPrincipal) {
         super(750, 600);
-        this.usuario = read.lerUsuario(telaPrincipal.getTextUsuario(), telaPrincipal.getPassword());
+        this.usuario = usuarioDAO.lerUsuario(telaPrincipal.getTextUsuario(), telaPrincipal.getPassword());
         configureComponents();
         addComponentsToFrame();
-        mostrarEventos(read);
+        mostrarEventos(eventoDAO);
+        setLayout(null);
+    }
+
+    public TelaComum(TelaPrincipal telaPrincipal, Boolean adm) {
+        super(750, 600);
+        this.adm = adm;
+        this.usuario = usuarioDAO.lerUsuario(telaPrincipal.getTextUsuario(), telaPrincipal.getPassword());
+        configureComponents();
+        addComponentsToFrame();
+        mostrarEventos(eventoDAO);
         setLayout(null);
     }
 
@@ -58,7 +78,10 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
     }
 
     private void configButtons() {
+        configButton(addButton, "Novo Evento", 340, 35, 140, 70, DEJAVU_19, BRANCO, CINZA);
         configButton(logout, "sair", 540, 35, 140, 70, DEJAVU_19, BRANCO, CINZA);
+        addButton.addActionListener(this);
+        logout.addActionListener(this);
     }
 
     private void configPanels() {
@@ -77,6 +100,9 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
     }
 
     private void addComponentsToFrame() {
+        if (adm == true) {
+            add(addButton);
+        }
         add(principalLabel);
         add(orderConttrl);
         add(logout);
@@ -86,14 +112,7 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
         add(painelBranco);
     }
 
-    public void mostrarEventos(Read read) {
-        int x = 30;
-        int y = 150;
-        int panelWidth = 215;
-        int panelHeight = 195;
-        int spacing = 15;
-        int acumulador = 0;
-        int acumuladorID = 1;
+    public void mostrarEventos(EventoDAO read) {
 
         for (RoundedPanel panel : panels) {
             remove(panel);
@@ -134,7 +153,7 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
 
         RoundedButton detalhesButton = new RoundedButton(15, BRANCO, null);
         detalhesButton.setText("Detalhes");
-        detalhesButton.setForeground(new Color(0, 0, 0));
+        detalhesButton.setForeground(PRETO);
         detalhesButton.setBounds(55, 150, 100, 30);
         detalhesButton.setFocusable(false);
         detalhesButton.addActionListener(this);
@@ -151,9 +170,12 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
         return panel;
     }
 
-    
     public void frameDispose() {
         dispose();
+    }
+
+    public void addComponent(Component component) {
+        add(component);
     }
 
     @Override
@@ -167,16 +189,17 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
             }
         } else if (source == logout) {
             logoutButton();
+        } else if (source == addButton) {
+            new AddEvento(this);
         }
     }
 
-
-    private void detalhesButton(RoundedButton button) {
+    protected void detalhesButton(RoundedButton button) {
         String indexString = button.getActionCommand().substring(9);
         int eventoIndex = Integer.parseInt(indexString);
         Evento evento = listaEventos.get(eventoIndex - 1);
         if (evento != null) {
-            DetahlesComum detalhesComum = new DetahlesComum(evento);
+            DetahlesComum detalhesComum = new DetahlesComum(evento, adm);
             detalhesComum.setUsuario(usuario);
             detalhesComum.setVisualComum(this);
         }

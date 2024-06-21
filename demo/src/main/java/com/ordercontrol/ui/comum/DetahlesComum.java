@@ -2,13 +2,15 @@ package com.ordercontrol.ui.comum;
 
 import javax.swing.*;
 import java.awt.event.*;
-import com.ordercontrol.DAO.CRUD.Read;
-import com.ordercontrol.DAO.CRUD.Update;
+
+import com.ordercontrol.DAO.EventoDAO;
+import com.ordercontrol.DAO.UsuarioDAO;
 import com.ordercontrol.componentes.RoundedButton;
 import com.ordercontrol.componentes.RoundedPanel;
 import com.ordercontrol.model.Evento;
 import com.ordercontrol.model.Usuario;
 import com.ordercontrol.ui.ModeloTela;
+import com.ordercontrol.ui.TelaPrincipal;
 
 public class DetahlesComum extends ModeloTela {
 
@@ -26,13 +28,18 @@ public class DetahlesComum extends ModeloTela {
     private final JLabel obs = new JLabel();
     private final RoundedPanel painel = new RoundedPanel(10, AZUL);
     private final RoundedButton registrar = new RoundedButton(10, CINZA, null);
+    private final RoundedButton deletar = new RoundedButton(10, CINZA, null);
 
     private Usuario usuario = null;
-    private final Read read = new Read();
+    private final EventoDAO eventoDAO = new EventoDAO();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private TelaComum telaComum = null;
 
-    public DetahlesComum(Evento evento) {
-        super(600, 400, 2);
+    boolean adm;
+
+    public DetahlesComum(Evento evento, Boolean adm) {
+        super(580, 400, 2);
+        this.adm = adm;
         configureLabels(evento);
         configurePanel();
         configButtons(evento);
@@ -40,8 +47,6 @@ public class DetahlesComum extends ModeloTela {
         setLayout(null);
     }
 
-    
-    // Configure labels
     private void configureLabels(Evento evento) {
         configLabel(nomeClienteLabel, "Cliente: " + evento.getNomeCliente(), BRANCO, DEJAVU_15, 15, 15, 300, 50);
         configLabel(tipoEventoLabel, "Tipo: " + evento.getTipoEventoToString(), BRANCO, DEJAVU_15, 15, 35, 300, 50);
@@ -60,12 +65,12 @@ public class DetahlesComum extends ModeloTela {
     private void configureUsuarioLabels(Evento evento) {
         int[] usuarios = evento.getUsuarios();
         if (usuarios[0] != 0) {
-            usuario = read.getUsuarioById(usuarios[0]);
+            usuario = usuarioDAO.getUsuarioById(usuarios[0]);
             configLabel(usuarioCadastrados, "Usuários inscritos:", PRETO, 18, 315, 15, 300, 50);
             configLabel(nomeUsuario1, "Nome: " + usuario.getNome(), PRETO, DEJAVU_15, 315, 45, 300, 50);
             configLabel(cpfUsuario1, "Cpf: " + usuario.getCpf(), PRETO, DEJAVU_15, 315, 65, 300, 50);
             if (usuarios[1] != 0) {
-                usuario = read.getUsuarioById(usuarios[1]);
+                usuario = usuarioDAO.getUsuarioById(usuarios[1]);
                 configLabel(nomeUsuario2, "Nome: " + usuario.getNome(), PRETO, DEJAVU_15, 315, 95, 300, 50);
                 configLabel(cpfUsuario2, "Cpf: " + usuario.getCpf(),PRETO, DEJAVU_15, 315, 115, 300, 50);
             }
@@ -75,7 +80,12 @@ public class DetahlesComum extends ModeloTela {
     }
 
     private void configButtons(Evento evento) {
-        registrar.setBounds(230, 280, 120, 50);
+        if (adm == true) {
+            registrar.setBounds(375, 280, 120, 50);
+            deletar.setBounds(85, 280, 120, 50);
+        }else {
+            registrar.setBounds(230, 280, 120, 50);
+        }
         registrar.setText("Inscrever-se");
         registrar.setForeground(BRANCO);
         registrar.setFocusable(false);
@@ -85,15 +95,35 @@ public class DetahlesComum extends ModeloTela {
                 RegistrarButton(evento);
             }
         });
+        
+        
+        deletar.setText("Deletar");
+        deletar.setForeground(BRANCO);
+        deletar.setFocusable(false);
+        deletar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int id = evento.getId();
+                System.out.println(id);
+                EventoDAO deletar = new EventoDAO();
+                deletar.deletarEvento(id);
+                new TelaComum(new TelaPrincipal());
+                dispose();
+            }
+        });
     }
 
+    
+
+
+
     private void RegistrarButton(Evento evento) {
-        Update update = new Update();
+        EventoDAO update = new EventoDAO();
         if (update.inscreverUsuario(usuario.getId(), evento.getId())) {
             JOptionPane.showMessageDialog(null, "Seu registro no evento foi efetuado com sucesso!");
             dispose();
             if (telaComum != null) {
-                telaComum.mostrarEventos(read);
+                telaComum.mostrarEventos(eventoDAO);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Evento já está com o número máximo de inscritos.");
@@ -101,6 +131,9 @@ public class DetahlesComum extends ModeloTela {
     }
 
     private void addComponentsToFrame() {
+        if (adm == true) {
+            add(deletar);
+        }
         add(nomeClienteLabel);
         add(tipoEventoLabel);
         add(localLabel);

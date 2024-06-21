@@ -49,7 +49,6 @@ public class ModeloTela extends JFrame implements ActionListener {
         return imageIcon2;
     }
 
-    // Construtor
     public ModeloTela(int x, int y) {
         setSize(x, y);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
