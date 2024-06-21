@@ -40,6 +40,7 @@ public class AddEvento extends ModeloTela {
         this.admin = telaComum;
         initializeComponents();
         addComponentsToFrame();
+        setLayout(null);
     }
 
     private void initializeComponents() {
@@ -71,7 +72,7 @@ public class AddEvento extends ModeloTela {
         configLabel(horaLabel, "Hora do evento", PRETO, ARIAL_15, 425, 240, 125, 25);
         configLabel(ordemServLabel, "Ordem de serviço ", PRETO, ARIAL_15, 520, 320, 125, 25);
         configLabel(orcanLabel, "Orçamento ", PRETO, ARIAL_15, 420, 320, 125, 25);
-        configLabel(orderConttrl, "OrderControl", PRETO, BAUHAUS, 250, 400, 200, 50);
+        configLabel(orderConttrl, "OrderControl", PRETO, BAUHAUS, 260, 35, 200, 50);
     }
 
     private void configureButtons() {

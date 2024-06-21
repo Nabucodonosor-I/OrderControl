@@ -2,6 +2,7 @@ package com.ordercontrol.ui.comum;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
@@ -80,8 +81,23 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
     private void configButtons() {
         configButton(addButton, "Novo Evento", 340, 35, 140, 70, DEJAVU_19, BRANCO, CINZA);
         configButton(logout, "sair", 540, 35, 140, 70, DEJAVU_19, BRANCO, CINZA);
-        addButton.addActionListener(this);
-        logout.addActionListener(this);
+        addButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AddEvento(new TelaComum(new TelaPrincipal(), adm));
+            }
+            
+        });
+        logout.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new TelaPrincipal();
+            }
+            
+        });
     }
 
     private void configPanels() {
@@ -187,10 +203,6 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
             if (button.getActionCommand().startsWith("detalhes_")) {
                 detalhesButton(button);
             }
-        } else if (source == logout) {
-            logoutButton();
-        } else if (source == addButton) {
-            new AddEvento(this);
         }
     }
 
@@ -203,11 +215,6 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
             detalhesComum.setUsuario(usuario);
             detalhesComum.setVisualComum(this);
         }
-    }
-
-    private void logoutButton() {
-        dispose();
-        new TelaPrincipal();
     }
 
     @Override
