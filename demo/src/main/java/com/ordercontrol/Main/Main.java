@@ -11,7 +11,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {    
 
         // Invocando construtores
-        TelaPrincipal sp = new TelaPrincipal();
+        new TelaPrincipal();
 
         });
     }
