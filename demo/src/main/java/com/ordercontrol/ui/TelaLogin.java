@@ -3,12 +3,12 @@ package com.ordercontrol.ui;
 import com.ordercontrol.DAO.UsuarioDAO;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
-import com.ordercontrol.ui.comum.TelaComum;
+import com.ordercontrol.ui.comum.TelaPrincipal;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class TelaPrincipal extends ModeloTela {
+public class TelaLogin extends ModeloTela {
 
     String senhaUser;
     String usuarioUser;
@@ -31,7 +31,7 @@ public class TelaPrincipal extends ModeloTela {
 
     private JLabel erro;
 
-    public TelaPrincipal() {
+    public TelaLogin() {
         super(750, 600);
 
         configureComponents();
@@ -120,7 +120,7 @@ public class TelaPrincipal extends ModeloTela {
         dispose();
     }
 
-    private Usuario login() {
+    private void login() {
         String usuarioText = getTextUsuario();
         String senhaChars = getPassword();
 
@@ -132,21 +132,16 @@ public class TelaPrincipal extends ModeloTela {
 
             if (usuario != null) {
                 if (usuario.getAdmin() == 1) {
-                    new TelaComum(this, true);
+                    new TelaPrincipal(usuario, true);
                     dispose();
-                    return usuario;
                 } else if (usuario.getAdmin() == 0) {
                     dispose();
-                    new TelaComum(this, false);
-                    return usuario;
+                    new TelaPrincipal(usuario, false);
                 }
-
             } else {
                 displayErroMessage("Usuarios ou senha invalidos", 470, 100, 200, 100);
-                return null;
             }
         }
-        return null;
     }
 
     @Override

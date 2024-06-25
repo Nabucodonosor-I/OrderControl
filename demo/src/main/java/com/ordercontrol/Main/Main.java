@@ -1,7 +1,7 @@
 package com.ordercontrol.Main;
 
 import javax.swing.SwingUtilities;
-import com.ordercontrol.ui.TelaPrincipal;
+import com.ordercontrol.ui.TelaLogin;
 
 
 
@@ -11,7 +11,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {    
 
         // Invocando construtores
-        new TelaPrincipal();
+        new TelaLogin();
 
         });
     }

@@ -14,10 +14,10 @@ import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
 import com.ordercontrol.ui.ModeloTela;
 
-import com.ordercontrol.ui.TelaPrincipal;
+import com.ordercontrol.ui.TelaLogin;
 import com.ordercontrol.ui.administrador.AddEvento;
 
-public class TelaComum extends ModeloTela implements AdjustmentListener {
+public class TelaPrincipal extends ModeloTela implements AdjustmentListener {
 
     private final JLabel principalLabel = new JLabel();
     private final JLabel orderConttrl = new JLabel();
@@ -30,7 +30,6 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
 
     private Usuario usuario = null;
     private final EventoDAO eventoDAO = new EventoDAO();
-    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
 
     private ArrayList<RoundedPanel> panels = new ArrayList<>();
@@ -47,19 +46,10 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
     int acumuladorID = 1;
     Boolean adm;
 
-    public TelaComum(TelaPrincipal telaPrincipal) {
-        super(750, 600);
-        this.usuario = usuarioDAO.lerUsuario(telaPrincipal.getTextUsuario(), telaPrincipal.getPassword());
-        configureComponents();
-        addComponentsToFrame();
-        mostrarEventos(eventoDAO);
-        setLayout(null);
-    }
-
-    public TelaComum(TelaPrincipal telaPrincipal, Boolean adm) {
+    public TelaPrincipal(Usuario usuario, Boolean adm) {
         super(750, 600);
         this.adm = adm;
-        this.usuario = usuarioDAO.lerUsuario(telaPrincipal.getTextUsuario(), telaPrincipal.getPassword());
+        this.usuario = usuario;
         configureComponents();
         addComponentsToFrame();
         mostrarEventos(eventoDAO);
@@ -85,7 +75,8 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AddEvento(new TelaComum(new TelaPrincipal(), adm));
+                new AddEvento(usuario, adm);
+                dispose();
             }
             
         });
@@ -94,7 +85,7 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                new TelaPrincipal();
+                new TelaLogin();
             }
             
         });
@@ -211,8 +202,7 @@ public class TelaComum extends ModeloTela implements AdjustmentListener {
         int eventoIndex = Integer.parseInt(indexString);
         Evento evento = listaEventos.get(eventoIndex - 1);
         if (evento != null) {
-            DetahlesComum detalhesComum = new DetahlesComum(evento, adm);
-            detalhesComum.setUsuario(usuario);
+            Detahles detalhesComum = new Detahles(evento, usuario, adm);
             detalhesComum.setVisualComum(this);
         }
     }

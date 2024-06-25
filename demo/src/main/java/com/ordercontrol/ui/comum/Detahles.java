@@ -10,9 +10,7 @@ import com.ordercontrol.componentes.RoundedPanel;
 import com.ordercontrol.model.Evento;
 import com.ordercontrol.model.Usuario;
 import com.ordercontrol.ui.ModeloTela;
-import com.ordercontrol.ui.TelaPrincipal;
-
-public class DetahlesComum extends ModeloTela {
+public class Detahles extends ModeloTela {
 
     private final JLabel nomeClienteLabel = new JLabel();
     private final JLabel tipoEventoLabel = new JLabel();
@@ -33,11 +31,11 @@ public class DetahlesComum extends ModeloTela {
     private Usuario usuario = null;
     private final EventoDAO eventoDAO = new EventoDAO();
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
-    private TelaComum telaComum = null;
+    private TelaPrincipal telaComum = null;
 
     boolean adm;
 
-    public DetahlesComum(Evento evento, Boolean adm) {
+    public Detahles(Evento evento, Usuario usuario, Boolean adm) {
         super(580, 400, 2);
         this.adm = adm;
         configureLabels(evento);
@@ -107,7 +105,7 @@ public class DetahlesComum extends ModeloTela {
                 System.out.println(id);
                 EventoDAO deletar = new EventoDAO();
                 deletar.deletarEvento(id);
-                new TelaComum(new TelaPrincipal());
+                new TelaPrincipal(usuario, adm);
                 dispose();
             }
         });
@@ -150,12 +148,8 @@ public class DetahlesComum extends ModeloTela {
         add(cpfUsuario2);
     }
 
-    public void setVisualComum(TelaComum telaComum) {
+    public void setVisualComum(TelaPrincipal telaComum) {
         this.telaComum = telaComum;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     @Override

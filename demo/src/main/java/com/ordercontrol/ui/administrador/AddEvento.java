@@ -6,14 +6,12 @@ import com.ordercontrol.DAO.*;
 import com.ordercontrol.componentes.*;
 import com.ordercontrol.model.*;
 import com.ordercontrol.ui.ModeloTela;
-import com.ordercontrol.ui.TelaPrincipal;
-import com.ordercontrol.ui.comum.TelaComum;
+import com.ordercontrol.ui.comum.TelaPrincipal;
 
 import java.awt.event.ActionEvent;
 
 public class AddEvento extends ModeloTela {
 
-    private final JFrame framePrincipal = new JFrame();
     private final RoundedButton cadastroButton = new RoundedButton(10, CINZA, null);
     private final CustomRadioButton ordemServ = new CustomRadioButton(PRETO);
     private final CustomRadioButton orcam = new CustomRadioButton(PRETO);
@@ -33,11 +31,13 @@ public class AddEvento extends ModeloTela {
     private final JLabel orcanLabel = new JLabel();
     private final JLabel ordemServLabel = new JLabel();
     private final JLabel horaLabel = new JLabel();
-    private TelaComum admin = null;
+    private Usuario usuario = null;
+    private Boolean adm;
 
-    public AddEvento(TelaComum telaComum) {
+    public AddEvento(Usuario usuario, Boolean adm) {
         super(750, 600, 2);
-        this.admin = telaComum;
+        this.adm = adm;
+        this.usuario = usuario;
         initializeComponents();
         addComponentsToFrame();
         setLayout(null);
@@ -137,10 +137,8 @@ public class AddEvento extends ModeloTela {
 
         if (criarEvento) {
             JOptionPane.showMessageDialog(null, "Evento cadastrado");
-            admin.frameDispose();
-            TelaComum visualAdmin = new TelaComum(new TelaPrincipal());
-            visualAdmin.mostrarEventos(new EventoDAO());
-            framePrincipal.dispose();
+            new TelaPrincipal(usuario, adm);
+            dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Erro ao cadastrar evento");
         }

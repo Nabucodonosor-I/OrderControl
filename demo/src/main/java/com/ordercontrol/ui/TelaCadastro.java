@@ -154,12 +154,12 @@ public class TelaCadastro extends ModeloTela {
             if (criarUsuario) {
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado");
                 dispose();
-                new TelaPrincipal();
+                new TelaLogin();
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário");
             }
         } else if (o == voltarButton) {
-            new TelaPrincipal();
+            new TelaLogin();
             dispose();
         }
     }
