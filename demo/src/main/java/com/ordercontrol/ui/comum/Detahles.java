@@ -28,16 +28,16 @@ public class Detahles extends ModeloTela {
     private final RoundedButton registrar = new RoundedButton(10, CINZA, null);
     private final RoundedButton deletar = new RoundedButton(10, CINZA, null);
 
-    private Usuario usuario = null;
-    private final EventoDAO eventoDAO = new EventoDAO();
+    private Usuario usuarioLogado = null;
+    private Usuario usuario = new Usuario();
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
-    private TelaPrincipal telaComum = null;
+    private TelaPrincipal telaPrincipal = null;
 
     boolean adm;
 
-    public Detahles(Evento evento, Usuario usuario, Boolean adm) {
+    public Detahles(Evento evento, Usuario usuarioLogado, Boolean adm) {
         super(580, 400, 2);
-        this.usuario = usuario;
+        this.usuarioLogado = usuarioLogado;
         this.adm = adm;
         configureLabels(evento);
         configurePanel();
@@ -106,6 +106,7 @@ public class Detahles extends ModeloTela {
                 System.out.println(id);
                 EventoDAO deletar = new EventoDAO();
                 deletar.deletarEvento(id);
+                telaPrincipal.dispose();
                 new TelaPrincipal(usuario, adm);
                 dispose();
             }
@@ -118,11 +119,11 @@ public class Detahles extends ModeloTela {
 
     private void RegistrarButton(Evento evento) {
         EventoDAO update = new EventoDAO();
-        if (update.inscreverUsuario(usuario.getId(), evento.getId())) {
+        if (update.inscreverUsuario(usuarioLogado.getId(), evento.getId())) {
             JOptionPane.showMessageDialog(null, "Seu registro no evento foi efetuado com sucesso!");
             dispose();
-            if (telaComum != null) {
-                telaComum = new TelaPrincipal(usuario, adm);
+            if (telaPrincipal != null) {
+                telaPrincipal = new TelaPrincipal(usuarioLogado, adm);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Evento já está com o número máximo de inscritos.");
@@ -149,8 +150,8 @@ public class Detahles extends ModeloTela {
         add(cpfUsuario2);
     }
 
-    public void setVisualComum(TelaPrincipal telaComum) {
-        this.telaComum = telaComum;
+    public void setVisualComum(TelaPrincipal telaPrincipal) {
+        this.telaPrincipal = telaPrincipal;
     }
 
     @Override
