@@ -37,6 +37,7 @@ public class Detahles extends ModeloTela {
 
     public Detahles(Evento evento, Usuario usuario, Boolean adm) {
         super(580, 400, 2);
+        this.usuario = usuario;
         this.adm = adm;
         configureLabels(evento);
         configurePanel();
@@ -121,7 +122,7 @@ public class Detahles extends ModeloTela {
             JOptionPane.showMessageDialog(null, "Seu registro no evento foi efetuado com sucesso!");
             dispose();
             if (telaComum != null) {
-                telaComum.mostrarEventos(eventoDAO);
+                telaComum = new TelaPrincipal(usuario, adm);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Evento já está com o número máximo de inscritos.");
